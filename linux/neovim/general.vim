@@ -126,3 +126,15 @@ let g:ale_linters = {
 let g:airline#extensions#ale#enabled = 1
 " let g:ale_sign_column_always = 1
 autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+
+set ignorecase
+set smartcase
+" Set indent folds
+set foldmethod=indent   
+" set foldnestmax=10
+set nofoldenable
+" set foldlevel=2
+" Persistent undo
+set undofile
+let g:python3_host_prog="/usr/bin/python3.7"
+

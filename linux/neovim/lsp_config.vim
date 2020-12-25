@@ -1,7 +1,7 @@
 " Neovim LSP Configs
 " Golang
 " lua << EOF
-"   require'nvim_lsp'.gopls.setup{}
+"   require'lspconfig'.gopls.setup{}
 "
 "   Commands:
 "
@@ -60,7 +60,7 @@ function! LspStatus() abort
 endfunction
 "LspStatus Lua side
 :lua << EOF
- local nvim_lsp = require('nvim_lsp')
+ local lspconfig = require('lspconfig')
  local lsp_status = require('lsp-status')
  local on_attach = function(_, bufnr)
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -84,21 +84,21 @@ endfunction
  
   local servers = {'clangd', 'jsonls', 'sumneko_lua', 'tsserver', 'vimls', 'pyls', 'bashls'}
   for _, lsp in ipairs(servers) do
-    nvim_lsp[lsp].setup {
+    lspconfig[lsp].setup {
       on_attach = on_attach,
     }
-    --require'nvim_lsp'.julials.setup{}
-    require'nvim_lsp'.gopls.setup{cmd = { 'gopls', "serve" }, filetypes = { "go", "gomod" }, on_attach = on_attach, capabilities = lsp_status.capabilities}
-    require'nvim_lsp'.clangd.setup{
+    --require'lspconfig'.julials.setup{}
+    require'lspconfig'.gopls.setup{cmd = { 'gopls', "serve" }, filetypes = { "go", "gomod" }, on_attach = on_attach, capabilities = lsp_status.capabilities}
+    require'lspconfig'.clangd.setup{
 	    cmd = { "clangd", "--background-index" },
 	    filetypes = { "c", "cpp", "objc", "objcpp" }
     }
-    require'nvim_lsp'.solargraph.setup{
+    require'lspconfig'.solargraph.setup{
 	    cmd = { "solargraph", "stdio" },
 	    filetypes = { "ruby" },
 	    on_attach = on_attach
     }
-	require'nvim_lsp'.hie.setup{
+	require'lspconfig'.hie.setup{
 		capabilities = lsp_status.capabilities,
 		init_options = {
 			languageServerHaskell = {
@@ -124,7 +124,7 @@ let g:diagnostic_auto_popup_while_jump = 1
 :lua << EOF
  
     -- Haskell
-    --require'nvim_lsp'.hie.setup{}
+    --require'lspconfig'.hie.setup{}
  
     --cmd = { "hie-wrapper", "--lsp" }
     --filetypes = { "haskell" }
