@@ -138,3 +138,21 @@ set nofoldenable
 set undofile
 let g:python3_host_prog="/usr/bin/python3.7"
 
+" Neovim term configs
+  augroup neovim_terminal
+    autocmd!
+
+    " Enter Terminal-mode (insert) automatically
+    autocmd TermOpen,TermEnter * startinsert
+
+    " Disables number lines on terminal buffers
+    autocmd TermOpen,TermEnter * :set nonumber norelativenumber
+    " Enables number lines when entering non term buffer
+    autocmd BufEnter,TermLeave * :set number relativenumber
+
+autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+
+" Neovim/GIT Remote Initial Integration
+if has('nvim')
+  let $GIT_EDITOR = 'nvr --remote-wait'
+endif
