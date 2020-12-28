@@ -80,3 +80,4 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 EOF
+set guifont=DejaVu\ Sans\ Mono\ 13
