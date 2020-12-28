@@ -8,12 +8,14 @@ nmap <silent> <C-q> <Plug>(ale_previous_wrap)
 nmap <silent> <C-s> <Plug>(ale_next_wrap)
 "Tmux+Vim Integration
 "Easier split navigation
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+" nnoremap <C-J> <C-W><C-J>
+" nnoremap <C-K> <C-W><C-K>
+" nnoremap <C-L> <C-W><C-L>
+" nnoremap <C-H> <C-W><C-H>
 "Map Leader key
-let mapleader=","
+let mapleader=" "
+nnoremap <SPACE> <Nop>
+let maplocalleader = "\\"
 "Neovim LSP mappings
 nnoremap <silent> <leader>d <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
@@ -26,11 +28,18 @@ nnoremap <silent> <leader>W    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 "Tab Remap
 nnoremap <leader>l :ls<CR>:b<space>
 set wildcharm=<C-z>
-"List buffers
-nnoremap <leader>b :Buffers<CR>
+"FZF buffers
+nnoremap <leader>b :Buffers <CR>
+"FZF History
+nnoremap <leader>h :History <CR>
 "Head over to next or previous buffer easily
-nnoremap F  :bprevious<CR>
-nnoremap f :bnext<CR>
-" fuzzy hotkeys!
-nnoremap <leader>f :Files<CR>
-nnoremap <leader>r :Rg<CR>
+nnoremap <Leader>f :Files<CR>
+nnoremap <Leader>r :Rg<CR>
+nmap <Leader>p <Plug>(PrettierAsync)
+" Escape term mode
+tnoremap hj <C-\><C-n>
+" Leader t opens term
+nnoremap <leader>t :term<CR>
+" Disable Elm-vim generic mappings
+" let g:elm_setup_keybindings = 0
+
