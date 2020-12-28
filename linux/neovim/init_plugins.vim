@@ -9,12 +9,12 @@ Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-lua/lsp-status.nvim'
 Plug 'nvim-lua/diagnostic-nvim'
 Plug 'dense-analysis/ale'
-Plug 'ryanoasis/vim-devicons'
+" Plug 'ryanoasis/vim-devicons'
 "Tmux navigation
-Plug 'christoomey/vim-tmux-navigator'
+" Plug 'christoomey/vim-tmux-navigator'
 " Plug 'Shougo/neosnippet.vim'
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-" Plug 'tpope/vim-repeat'
+" Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'tpope/vim-repeat'
 " Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -34,7 +34,7 @@ Plug 'hallzy/lightline-onedark'
 " Plug 'Shougo/neosnippet-snippets'
 Plug 'itchyny/lightline.vim'
 " Neovim LSP
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'christianchiarulli/nvcode-color-schemes.vim'
 Plug 'wikitopian/hardmode'
