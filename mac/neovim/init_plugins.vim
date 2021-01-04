@@ -9,7 +9,7 @@ call plug#begin()
  Plug 'ryanoasis/vim-devicons'
 "Tmux navigation
  Plug 'christoomey/vim-tmux-navigator'
- Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+ " Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
  Plug 'tpope/vim-repeat'
  " UltiSnips
  Plug 'SirVer/ultisnips'
