@@ -150,3 +150,9 @@ let g:python3_host_prog="/usr/local/bin/python3"
     autocmd BufEnter,TermLeave * :set number relativenumber
   augroup END
 autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+
+" make nvr git editor
+if has('nvim')
+  let $GIT_EDITOR = 'nvr --remote-wait'
+endif
+
