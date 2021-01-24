@@ -22,3 +22,5 @@ call plug#begin()
  Plug 'christianchiarulli/nvcode-color-schemes.vim'
  Plug 'joshdick/onedark.vim'
 call plug#end()
+
+

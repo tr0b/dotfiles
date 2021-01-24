@@ -1,0 +1,1 @@
+/Users/samoht2/.config/nvim/lua/lsp_config.lua
