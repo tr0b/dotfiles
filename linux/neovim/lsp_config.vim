@@ -1,32 +1,3 @@
-" Neovim LSP Configs
-" Golang
-" lua << EOF
-"   require'lspconfig'.gopls.setup{}
-"
-"   Commands:
-"
-"   Default Values:
-"     cmd = { "gopls" }
-"     filetypes = { "go", "gomod" }
-"     root_dir = root_pattern("go.mod", ".git")
-" EOF
-" Haskell
-" C-family
-" PHP
-" Javascript
-" Ruby
-" SQL
-" Python
-" Shell (Bash) (LspInstall)
-" HTML
-" JSON
-" Typescript
-" YML
-" Cmake
-" Docker
-" lua require("lsp")
-"
-" setlocal omnifunc=v:lua.vim.lsp.omnifunc
 " " Show errors after 1 second
 set updatetime=500
 let g:diagnostic_insert_delay = 1
@@ -34,101 +5,16 @@ let g:diagnostic_show_sign = 1
 let g:diagnostic_enable_virtual_text = 1
 " " Complete parentheses for functions
 let g:completion_enable_auto_paren = 1
-" " Work with endwise
-" let g:completion_confirm_key = "\<C-y>"
 " Set completeopt to have a better completion experience
 set completeopt=longest,menuone,noinsert,noselect
-" Avoid showing message extra message when using completion
-" set shortmess+=c
 let g:completion_enable_snippet = 'UltiSnips'
  
 let g:netrw_gx = '<cWORD>'
-" autocmd BufEnter * lua require'completion'.on_attach()
-" :lua << EOF
-"   local on_attach = function()
-"   require'completion'.on_attach()
-"   require'diagnostic'.on_attach()
-" end
-" set statusline+=\ %{LspStatus()}
-" EOF
-"LspStatus vimscript side
-"LspStatus Lua side
-:lua << EOF
- vim.lsp.set_log_level("debug")
- local lspconfig = require('lspconfig')
---local lsp_status = require('lsp-status')
- local on_attach = function(_, bufnr)
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-    --require'diagnostic'.on_attach()
-    require'completion'.on_attach()
- 
-    -- Mappings.
-    local opts = { noremap=true, silent=true }
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>K', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>e', '<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>', opts)
- 
- 
-  end
- 
-  local servers = {'clangd', 'jsonls', 'tsserver', 'vimls', 'pyls', 'bashls'}
-  for _, lsp in ipairs(servers) do
-    lspconfig[lsp].setup {
-      on_attach = on_attach,
-    }
-    --require'lspconfig'.julials.setup{}
-    --html LSP server config
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities.textDocument.completion.completionItem.snippetSupport = true
-    require'lspconfig'.html.setup{
-
-    capabilities = capabilities,
-    on_attach = on_attach,
-
-    }
-    require'lspconfig'.solargraph.setup{
-	    cmd = { "solargraph", "stdio" },
-	    filetypes = { "ruby" },
-	    on_attach = on_attach
-    }
-	require'lspconfig'.hie.setup{
-		init_options = {
-			languageServerHaskell = {
-			    hlintOn = true;
-			    maxNumberOfProblems = 100;
-			    liquidOn = true;
-			    completionSnippetsOn = true;
-			    formatOnImportOn = true;
-			    formattingProvider = "brittany";
-			    languageServerVariant = "haskell-language-server"
-			  }
-		},
-		cmd = { "hie-wrapper", "--lsp" },
-		filetypes = { "haskell" }
-	}
-  end
-EOF
+lua require('lsp_config')
+let g:LanguageClient_autoStart = 1
+autocmd BufEnter * lua require'completion'.on_attach()
 command! -buffer -nargs=0 LspShowLineDiagnostics lua require'jumpLoc'.openLineDiagnostics()
 nnoremap <buffer><silent> <leader>d <Cmd>LspShowLineDiagnostics<CR>
  
 let g:diagnostic_auto_popup_while_jump = 1
- 
-:lua << EOF
- 
-    -- Haskell
-    --require'lspconfig'.hie.setup{}
- 
-    --cmd = { "hie-wrapper", "--lsp" }
-    --filetypes = { "haskell" }
-EOF
-let g:LanguageClient_serverCommands = {
-        \ 'haskell': ['hie-wrapper', '--lsp'],
-    \}
-let g:LanguageClient_autoStart = 1
-autocmd BufEnter * lua require'completion'.on_attach()
+
