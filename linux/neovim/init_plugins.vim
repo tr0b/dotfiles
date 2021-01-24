@@ -6,7 +6,7 @@ call plug#begin()
 "LSP Tools necessary for (Neo)Vim
 Plug 'neovim/nvim-lsp'
 Plug 'nvim-lua/completion-nvim'
-Plug 'nvim-lua/lsp-status.nvim'
+" Plug 'nvim-lua/lsp-status.nvim'
 Plug 'dense-analysis/ale'
 "Tmux navigation
 " Plug 'christoomey/vim-tmux-navigator'
@@ -21,7 +21,7 @@ Plug 'preservim/nerdcommenter'
 Plug 'tpope/vim-abolish'
 " Plug 'franbach/miramare'
 Plug 'hallzy/lightline-onedark'
-" Plug 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
 " if has('nvim')
 "   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " else

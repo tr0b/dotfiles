@@ -45,4 +45,9 @@ nnoremap <leader>w :w!<CR>
 nnoremap <leader>x :bd<CR>
 " Disable Elm-vim generic mappings
 " let g:elm_setup_keybindings = 0
-
+" Escape Terminal Mode
+tnoremap jk <C-\><C-n>
+tnoremap kj <C-\><C-n>
+" Escape Insert Mode
+inoremap jk <Esc>
+inoremap kj <Esc>
