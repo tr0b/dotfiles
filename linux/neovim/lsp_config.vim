@@ -52,19 +52,14 @@ let g:netrw_gx = '<cWORD>'
 " set statusline+=\ %{LspStatus()}
 " EOF
 "LspStatus vimscript side
-function! LspStatus() abort
-  if luaeval('#vim.lsp.buf_get_clients() > 0')
-    return luaeval("require('lsp-status').status()")
-  endif
-  return ''
-endfunction
 "LspStatus Lua side
 :lua << EOF
+ vim.lsp.set_log_level("debug")
  local lspconfig = require('lspconfig')
- local lsp_status = require('lsp-status')
+--local lsp_status = require('lsp-status')
  local on_attach = function(_, bufnr)
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-    require'diagnostic'.on_attach()
+    --require'diagnostic'.on_attach()
     require'completion'.on_attach()
  
     -- Mappings.
@@ -97,18 +92,12 @@ endfunction
     on_attach = on_attach,
 
     }
-    require'lspconfig'.gopls.setup{cmd = { 'gopls', "serve" }, filetypes = { "go", "gomod" }, on_attach = on_attach, capabilities = lsp_status.capabilities}
-    require'lspconfig'.clangd.setup{
-	    cmd = { "clangd", "--background-index" },
-	    filetypes = { "c", "cpp", "objc", "objcpp" }
-    }
     require'lspconfig'.solargraph.setup{
 	    cmd = { "solargraph", "stdio" },
 	    filetypes = { "ruby" },
 	    on_attach = on_attach
     }
 	require'lspconfig'.hie.setup{
-		capabilities = lsp_status.capabilities,
 		init_options = {
 			languageServerHaskell = {
 			    hlintOn = true;
