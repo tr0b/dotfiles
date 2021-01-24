@@ -18,11 +18,6 @@ autocmd filetype c,cpp nnoremap <F4> :w <bar> make %<CR>
 autocmd filetype haskell nnoremap <buffer> <F4> :w <bar> !ghc %<CR>
 "256 colour
 set t_Co=256
-"Prettier options
-let g:prettier#quickfix_enabled = 1
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-let g:prettier#config#parser = 'babylon'
 "NERDTree options
 let g:NERDSpaceDelims = 1
 
