@@ -1,7 +1,6 @@
  local lspconfig = require('lspconfig')
  local on_attach = function(_, bufnr)
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-    --require'diagnostic'.on_attach()
     require'completion'.on_attach()
  
     -- Mappings.
@@ -12,14 +11,16 @@
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>K', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    vim.api.nvim_buf_set_keymap('n','<leader>p', '<cmd>lua vim.lsp.buf.formatting()<CR>')
+    buf_set_keymap('n', '<space>R', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    buf_set_keymap('n', '<leader>i', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>e', '<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>', opts)
  
  
   end
  
-  local servers = {'clangd', 'jsonls', 'tsserver', 'vimls', 'pyls', 'bashls'}
+  local servers = {'clangd', 'jsonls', 'tsserver', 'vimls', 'pyls', 'bashls', 'solargraph'}
   for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup {
       on_attach = on_attach,
@@ -33,11 +34,6 @@
     capabilities = capabilities,
     on_attach = on_attach,
 
-    }
-    require'lspconfig'.solargraph.setup{
-	    cmd = { "solargraph", "stdio" },
-	    filetypes = { "ruby" },
-	    on_attach = on_attach
     }
 	require'lspconfig'.hie.setup{
 		init_options = {
