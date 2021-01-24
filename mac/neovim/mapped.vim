@@ -35,9 +35,19 @@ nnoremap <leader>h :History <CR>
 "Head over to next or previous buffer easily
 nnoremap <Leader>f :Files<CR>
 nnoremap <Leader>r :Rg<CR>
-tnoremap hj <C-\><C-n>
+"Write changes to buffer, override!
+nnoremap <Leader>w :w!<CR>
+"Quit NeoVim
+nnoremap <Leader>q :q<CR>
+" Escape Terminal Mode
+tnoremap jk <C-\><C-n>
+tnoremap kj <C-\><C-n>
+" Escape Insert Mode
+inoremap jk <Esc>
+inoremap kj <Esc>
 " Leader t opens term
 nnoremap <leader>t :term<CR>
-nnoremap <leader>x :w<bar>bd<CR>
+" Exit Buffer
+nnoremap <leader>x :bd<CR>
 " Disable Elm-vim generic mappings
 " let g:elm_setup_keybindings = 0
