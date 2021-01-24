@@ -94,6 +94,7 @@ endfunction
     require'lspconfig'.html.setup{
 
     capabilities = capabilities,
+    on_attach = on_attach,
 
     }
     require'lspconfig'.gopls.setup{cmd = { 'gopls', "serve" }, filetypes = { "go", "gomod" }, on_attach = on_attach, capabilities = lsp_status.capabilities}
