@@ -35,11 +35,14 @@ nnoremap <leader>h :History <CR>
 "Head over to next or previous buffer easily
 nnoremap <Leader>f :Files<CR>
 nnoremap <Leader>r :Rg<CR>
-nmap <Leader>p <Plug>(PrettierAsync)
 " Escape term mode
 tnoremap hj <C-\><C-n>
 " Leader t opens term
 nnoremap <leader>t :term<CR>
+" Save buffer
+nnoremap <leader>w :w!<CR>
+" Exit buffer
+nnoremap <leader>x :bd<CR>
 " Disable Elm-vim generic mappings
 " let g:elm_setup_keybindings = 0
 
