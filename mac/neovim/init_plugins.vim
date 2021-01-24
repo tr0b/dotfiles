@@ -1,17 +1,13 @@
 "Initialize plugins"
 call plug#begin()
 "LSP Tools necessary for (Neo)Vim
- Plug 'neovim/nvim-lsp'
+ Plug 'neovim/nvim-lspconfig'
  Plug 'nvim-lua/completion-nvim'
- Plug 'nvim-lua/lsp-status.nvim'
- Plug 'nvim-lua/diagnostic-nvim'
  Plug 'dense-analysis/ale'
- Plug 'ryanoasis/vim-devicons'
 "Tmux navigation
- Plug 'christoomey/vim-tmux-navigator'
- " Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
  Plug 'tpope/vim-repeat'
  " UltiSnips
+ Plug 'honza/vim-snippets'
  Plug 'SirVer/ultisnips'
  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
  Plug 'junegunn/fzf.vim'
@@ -21,8 +17,8 @@ call plug#begin()
  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
  Plug 'psliwka/vim-smoothie'
  Plug 'nvim-treesitter/nvim-treesitter'
- Plug 'morhetz/gruvbox'
- Plug 'shinchu/lightline-gruvbox.vim'
  Plug 'wikitopian/hardmode'
  Plug 'andys8/vim-elm-syntax'
+ Plug 'christianchiarulli/nvcode-color-schemes.vim'
+ Plug 'joshdick/onedark.vim'
 call plug#end()
