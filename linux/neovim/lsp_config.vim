@@ -82,12 +82,20 @@ endfunction
  
   end
  
-  local servers = {'clangd', 'jsonls', 'sumneko_lua', 'tsserver', 'vimls', 'pyls', 'bashls'}
+  local servers = {'clangd', 'jsonls', 'tsserver', 'vimls', 'pyls', 'bashls'}
   for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup {
       on_attach = on_attach,
     }
     --require'lspconfig'.julials.setup{}
+    --html LSP server config
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities.textDocument.completion.completionItem.snippetSupport = true
+    require'lspconfig'.html.setup{
+
+    capabilities = capabilities,
+
+    }
     require'lspconfig'.gopls.setup{cmd = { 'gopls', "serve" }, filetypes = { "go", "gomod" }, on_attach = on_attach, capabilities = lsp_status.capabilities}
     require'lspconfig'.clangd.setup{
 	    cmd = { "clangd", "--background-index" },
