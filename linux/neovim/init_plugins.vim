@@ -7,9 +7,7 @@ call plug#begin()
 Plug 'neovim/nvim-lsp'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-lua/lsp-status.nvim'
-Plug 'nvim-lua/diagnostic-nvim'
 Plug 'dense-analysis/ale'
-" Plug 'ryanoasis/vim-devicons'
 "Tmux navigation
 " Plug 'christoomey/vim-tmux-navigator'
 " Plug 'Shougo/neosnippet.vim'
@@ -38,5 +36,4 @@ Plug 'itchyny/lightline.vim'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'christianchiarulli/nvcode-color-schemes.vim'
 Plug 'wikitopian/hardmode'
-" Plug 'nikvdp/neomux'
 call plug#end()
