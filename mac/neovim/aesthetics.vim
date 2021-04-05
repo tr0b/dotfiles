@@ -4,7 +4,7 @@
 "       \ 'colorscheme': 'wombat',
 "       \ }
 set noshowmode
-set cursorcolumn=true
+set cursorcolumn
 set colorcolumn=80
 set conceallevel=3
 let g:nvcode_termcolors=256
