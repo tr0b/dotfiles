@@ -4,21 +4,23 @@ call plug#begin()
  Plug 'neovim/nvim-lspconfig'
  Plug 'nvim-lua/completion-nvim'
  Plug 'dense-analysis/ale'
-"Tmux navigation
- Plug 'tpope/vim-repeat'
  " UltiSnips
  Plug 'honza/vim-snippets'
  Plug 'SirVer/ultisnips'
- Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
- Plug 'junegunn/fzf.vim'
- Plug 'preservim/nerdcommenter'
+ " Commentary, Abolish motions, repeat, surround
+ Plug 'tpope/vim-commentary'
  Plug 'tpope/vim-abolish'
+ Plug 'tpope/vim-repeat'
+ Plug 'tpope/vim-surround'
+ " FZF
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+ " Floaterm
+ Plug 'voldikss/vim-floaterm'
+ " Themes, decoration
  Plug 'itchyny/lightline.vim'
- Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
  Plug 'psliwka/vim-smoothie'
  Plug 'nvim-treesitter/nvim-treesitter'
- Plug 'wikitopian/hardmode'
- Plug 'andys8/vim-elm-syntax'
  Plug 'christianchiarulli/nvcode-color-schemes.vim'
  Plug 'joshdick/onedark.vim'
 call plug#end()

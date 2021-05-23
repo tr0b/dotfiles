@@ -34,7 +34,7 @@ nnoremap <leader>b :Buffers <CR>
 nnoremap <leader>h :History <CR>
 "Head over to next or previous buffer easily
 nnoremap <Leader>f :Files<CR>
-nnoremap <Leader>r :Rg<CR>
+nnoremap <Leader>r :RG<CR>
 "Write changes to buffer, override!
 nnoremap <Leader>w :w!<CR>
 "Quit NeoVim

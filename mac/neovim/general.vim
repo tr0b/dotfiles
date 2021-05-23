@@ -1,6 +1,8 @@
 "Initial config
 set shellcmdflag=-ic
 set clipboard^=unnamed,unnamedplus
+" Optimize macros
+set lazyredraw 
 " Set hidden buffers
 :set hid
 filetype off
@@ -9,79 +11,20 @@ syntax on
 " Set relative numbers
 set number
 set relativenumber
-"tmux-vim options
-set splitbelow
-set splitright
-let g:tmux_navigator_disable_when_zoomed = 1
-"Filetype Options
-autocmd filetype python nnoremap <buffer> <F4> :w <bar> exec '!python3' shellescape(@%, 1)<CR>
-autocmd filetype c,cpp nnoremap <F4> :w <bar> make %<CR>
-autocmd filetype haskell nnoremap <buffer> <F4> :w <bar> !ghc %<CR>
-"Prettier options
-let g:prettier#quickfix_enabled = 0
-let g:prettier#autoformat = 0
-" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-let g:prettier#config#parser = 'babylon'
-"NERD options
-let g:NERDSpaceDelims = 1
-
-" Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
-
-" Align line-wise comment delimiters flush left instead of following code indentation
-let g:NERDDefaultAlign = 'left'
-
-" Set a language to use its alternate delimiters by default
-let g:NERDAltDelims_java = 1
-
-" Add your own custom formats or override the defaults
-let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
-
-" Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDCommentEmptyLines = 1
-
-" Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
-
-" Enable NERDCommenterToggle to check all selected lines is commented or not
-let g:NERDToggleCheckAllLines = 1
-"NERDTree options 2 (mappings and bindings)
-:vmap <Leader>. <plug>NERDCommenterUncomment
-:nmap <Leader>. <plug>NERDCommenterUncomment
-:vmap <Leader><Leader> <plug>NERDCommenterSexy
-:nmap <Leader><Leader> <plug>NERDCommenterSexy
-:nmap <F3> :NERDTreeToggle<CR>
-:noremap <F5> :w <CR>
-:noremap <Leader><F5> :wa <CR>
-:inoremap <F5>  <Esc>:w <CR>
-" " omnifuncs
-" augroup omnifuncs
-"   autocmd!
-"   autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-"   autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-"   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-"   autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-"   autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-" augroup end
-" " tern
-" if exists('g:plugs["tern_for_vim"]')
-"   let g:tern_show_argument_hints = 'on_hold'
-"   let g:tern_show_signature_in_pum = 1
-"   autocmd FileType javascript setlocal omnifunc=tern#Complete
-" endif
-" " tern
-" autocmd FileType javascript nnoremap <silent> <buffer> gb :TernDef<CR>
-" " Plugin key-mappings.
-" " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-" imap <C-K>     <Plug>(neosnippet_expand_or_jump)
-" smap <C-K>     <Plug>(neosnippet_expand_or_jump)
-" xmap <C-K>     <Plug>(neosnippet_expand_target)
-" smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-" \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-" For conceal markers.
-" if has('conceal')
-"   set conceallevel=2 concealcursor=niv
-" endif
+" set smart case
+set ignorecase
+set smartcase
+" Set indent folds
+set foldmethod=indent   
+" set foldnestmax=10
+set nofoldenable
+" set foldlevel=2
+" Persistent undo
+set undofile
+" Ruler
+set ruler
+" Live substitution replacement
+set inccommand=nosplit
 " fzf+ripgrep search-term config with :Find command
 " --column: Show column number
 " --line-number: Show line number
@@ -95,12 +38,17 @@ let g:NERDToggleCheckAllLines = 1
 " --color: Search color options
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 au BufRead,BufNewFile *.json set filetype=json
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 hi SpellBad term=reverse ctermbg=darkgreen
 autocmd StdinReadPre * let s:std_in=1
-"gopls goinfomode
-let g:go_info_mode='gopls'
-"asyncomplete settings
-" let g:asyncomplete_auto_popup = 1
 let g:UltiSnipsExpandTrigger = "<NUL>"
 let g:UltiSnipsJumpForwardTrigger="<NUL>"
 let g:UltiSnipsJumpBackwardTrigger="<NUL>"
@@ -117,25 +65,7 @@ inoremap <expr> <CR> pumvisible() ? "<C-R>=<SID>ExpandSnippetOrReturn()<CR>" : "
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '!'
 let g:ale_fix_on_save = 1
-" Fix files with prettier, and then ESLint.
-let g:prettier#config#print_width = 180
-" let g:ale_linters = {
-" \   'javascript': ['eslint','prettier', 'prettier_eslint'],
-" \   'ruby': ['rubocop', 'solargraph', 'sorbet'],
-" \   'elm': ['elm_ls'],
-" \}
-let g:airline#extensions#ale#enabled = 1
-" let g:ale_sign_column_always = 1
-" set smart case
-set ignorecase
-set smartcase
-" Set indent folds
-set foldmethod=indent   
-" set foldnestmax=10
-set nofoldenable
-" set foldlevel=2
-" Persistent undo
-set undofile
+let g:ale_lint_on_save = 1
 let g:python3_host_prog="/usr/local/bin/python3"
 
 " Neovim term configs
