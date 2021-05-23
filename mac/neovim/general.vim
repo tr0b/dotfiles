@@ -116,13 +116,14 @@ endfunction
 inoremap <expr> <CR> pumvisible() ? "<C-R>=<SID>ExpandSnippetOrReturn()<CR>" : "\<CR>"
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '!'
+let g:ale_fix_on_save = 1
 " Fix files with prettier, and then ESLint.
 let g:prettier#config#print_width = 180
-let g:ale_linters = {
-\   'javascript': ['eslint','prettier'],
-\   'ruby': ['rubocop'],
-\   'elm': ['elm_ls'],
-\}
+" let g:ale_linters = {
+" \   'javascript': ['eslint','prettier', 'prettier_eslint'],
+" \   'ruby': ['rubocop', 'solargraph', 'sorbet'],
+" \   'elm': ['elm_ls'],
+" \}
 let g:airline#extensions#ale#enabled = 1
 " let g:ale_sign_column_always = 1
 " set smart case
