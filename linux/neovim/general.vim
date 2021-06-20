@@ -12,10 +12,6 @@ set relativenumber
 set splitbelow
 set splitright
 let g:tmux_navigator_disable_when_zoomed = 1
-"Filetype Options
-autocmd filetype python nnoremap <buffer> <F4> :w <bar> exec '!python3' shellescape(@%, 1)<CR>
-autocmd filetype c,cpp nnoremap <F4> :w <bar> make %<CR>
-autocmd filetype haskell nnoremap <buffer> <F4> :w <bar> !ghc %<CR>
 "256 colour
 set t_Co=256
 "NERDTree options
@@ -41,15 +37,10 @@ let g:NERDTrimTrailingWhitespace = 1
 
 " Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
-"NERDTree options 2 (mappings and bindings)
 :vmap <Leader>. <plug>NERDCommenterUncomment
 :nmap <Leader>. <plug>NERDCommenterUncomment
 :vmap <Leader><Leader> <plug>NERDCommenterSexy
 :nmap <Leader><Leader> <plug>NERDCommenterSexy
-:nmap <F3> :NERDTreeToggle<CR>
-:noremap <F5> :w <CR>
-:noremap <Leader><F5> :wa <CR>
-:inoremap <F5>  <Esc>:w <CR>
 " omnifuncs
 augroup omnifuncs
   autocmd!
@@ -113,7 +104,7 @@ inoremap <expr> <CR> pumvisible() ? "<C-R>=<SID>ExpandSnippetOrReturn()<CR>" : "
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '!'
 " Fix files with prettier, and then ESLint.
-let g:prettier#config#print_width = 180
+let g:prettier#config#print_width = 80
 let g:ale_linters = {
 \   'javascript': ['eslint','prettier'],
 \   'ruby': ['rubocop'],
@@ -131,7 +122,7 @@ set nofoldenable
 " set foldlevel=2
 " Persistent undo
 set undofile
-let g:python3_host_prog="/usr/bin/python3.7"
+let g:python3_host_prog="/usr/bin/python3.9"
 
 " Neovim term configs
   augroup neovim_terminal
