@@ -20,6 +20,8 @@ let g:palenight_terminal_italics=1
 " hi! NonText ctermbg=NONE guibg=NONE
 " colorscheme nord
 " NERDTree icons
+set colorcolumn=80
+set conceallevel=3
 let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "",
     \ "Staged"    : "",
