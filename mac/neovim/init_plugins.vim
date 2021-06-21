@@ -20,7 +20,7 @@ Plug 'junegunn/fzf.vim'
  " Themes, decoration
  Plug 'itchyny/lightline.vim'
  Plug 'psliwka/vim-smoothie'
- Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
  Plug 'christianchiarulli/nvcode-color-schemes.vim'
  Plug 'joshdick/onedark.vim'
 call plug#end()

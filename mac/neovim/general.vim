@@ -14,8 +14,9 @@ set relativenumber
 " set smart case
 set ignorecase
 set smartcase
-" Set indent folds
-set foldmethod=indent   
+" Set Treesitter folds
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 " set foldnestmax=10
 set nofoldenable
 " set foldlevel=2
