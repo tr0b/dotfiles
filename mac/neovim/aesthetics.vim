@@ -76,12 +76,4 @@ call sign_define("LspDiagnosticsWarningSign", {"text" : "", "texthl" : "LspDi
 call sign_define("LspDiagnosticInformationSign", {"text" : "", "texthl" : "LspDiagnosticsInformation"})
 call sign_define("LspDiagnosticHintSign", {"text" : "", "texthl" : "LspDiagnosticsHint"})
 " configure treesitter
-lua << EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  highlight = {
-    enable = true,              -- false will disable the whole extension
-  },
-}
-EOF
 set guifont=DejaVu\ Sans\ Mono\ 13

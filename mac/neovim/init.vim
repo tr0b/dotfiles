@@ -5,3 +5,19 @@ source $HOME/.config/dotfiles/mac/neovim/aesthetics.vim " <- initialize aestheti
 lua require("lsp_config")
 source $HOME/.config/dotfiles/mac/neovim/lsp_config.vim " <- initialize lsp settings [VIM]
 " configure treesitter
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+  },
+}
+EOF
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  indent = {
+    enable = true
+  }
+}
+EOF

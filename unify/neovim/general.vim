@@ -1,5 +1,5 @@
 "Initial config
-set shellcmdflag=-ic
+" set shellcmdflag=-ic
 set clipboard^=unnamed,unnamedplus
 " Optimize macros
 set lazyredraw 
