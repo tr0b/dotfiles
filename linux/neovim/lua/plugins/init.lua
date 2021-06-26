@@ -1,8 +1,9 @@
 require 'paq-nvim' {
 
+	'savq/paq-nvim'; -- Let Paq manage itself
 	'neovim/nvim-lspconfig'; -- LSP for Nvim >= 0.5
-	'nvim-lua/completion-nvim'; -- autocompletion for LSP
-	'dense-analysis/ale'; -- ALE Lint/Fix diagnostics
 	{'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}; -- Treesitter
-	'navarasu/onedark.nvim'; -- Colorscheme
+	'junegunn/fzf'; -- Basic FZF
+	'junegunn/fzf.vim'; -- Other, pre-defined FZF commands
+        'folke/tokyonight.nvim'; -- Colourscheme
 }
