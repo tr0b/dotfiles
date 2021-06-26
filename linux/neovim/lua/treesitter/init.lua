@@ -1,10 +1,13 @@
-require'nvim-treesitter.configs'.setup {
-	ensure_installed = 'mantained',
-	highlight = { enabled = true },
-	indent = { enabled = true },
+local ts = require 'nvim-treesitter.configs' -- Import Treesitter
+
+ts.setup {
+	ensure_installed = 'all',
+        ignore_install = { 'haskell' },
+	highlight = { enable = true },
+	indent = { enable = true },
 	incremental_selection = {
 
-		enabled = true,
+		enable = true,
 		keymaps = {
 			init_selection = "gnn",
 			node_incremental = "grn",
@@ -12,6 +15,10 @@ require'nvim-treesitter.configs'.setup {
 			node_decremental = "grm"
 		}
 	}
-}
-vim.o.foldmethod = 'expr'
-vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+} 
+--
+-- Treesitter folding
+vim.api.nvim_exec([[
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+]], true)
