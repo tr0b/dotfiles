@@ -1,5 +1,5 @@
 local cmd = vim.cmd -- Alias for vim.cmd
-local map = vim.api.nvim_set_keymap -- Alias for setting keymap 
+local map = vim.api.nvim_set_keymap -- Alias for setting keymap
 -- FZF/RG command
 local fzf = [[
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
@@ -12,7 +12,7 @@ function! RipgrepFzf(query, fullscreen)
 endfunction
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 ]]
-cmd([[let mapleader=" "]]) -- Sets leaderkey to space 
+cmd([[let mapleader=" "]]) -- Sets leaderkey to space
 map('n', '<SPACE>', '<Nop>', { noremap = true }) -- nnoremap <SPACE> <Nop>
 cmd([[let maplocalleader = "\\"]]) -- Sets local leader to backslash
 map('n', '<leader>l', ':ls<CR>:b<space>', {noremap = true}) -- Show buffers
