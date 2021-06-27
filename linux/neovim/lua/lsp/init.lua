@@ -103,10 +103,11 @@ lspconfig.jsonls.setup {
 }
 
 ------------ GENERIC DIAGNOSTICS LSP (FORMATTING, LINTING) -------------------
-lspconfig.diagnosticls.setup {
+lspconfig.efm.setup {
         on_attach = on_attach,
-        filetypes = {"javascript", "javascriptreact", "typescript", "typescriptreact", "json", "sh"},
-        init_options = diagnostics
+        init_options = {documentFormatting = true},
+        settings = diagnostics.settings,
+        filetypes = diagnostics.filetypes
 }
 
 local auto_format = [[
