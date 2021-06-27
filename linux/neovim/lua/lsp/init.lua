@@ -1,4 +1,5 @@
 local lspconfig = require('lspconfig') -- Imports Nvim Native LSP Client
+local diagnostics = require('diagnostics') -- Import diagnostics config
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -19,7 +20,7 @@ local on_attach = function(bufnr)
   buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   buf_set_keymap('n', '<localleader>k', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   buf_set_keymap('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', '<localleader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', '<leader>n', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '<leader>c', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', '<localleader>r', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   buf_set_keymap('n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
@@ -101,11 +102,18 @@ lspconfig.jsonls.setup {
     }
 }
 
+------------ GENERIC DIAGNOSTICS LSP (FORMATTING, LINTING) -------------------
+lspconfig.diagnosticls.setup {
+        on_attach = on_attach,
+        filetypes = {"javascript", "javascriptreact", "typescript", "typescriptreact", "json", "sh"},
+        init_options = diagnostics
+}
+
 local auto_format = [[
-  augroup neovim_lsp_auto_format
-    autocmd!
-    " Formats, then writes buffer
-    autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()
-  augroup END
+augroup neovim_lsp_auto_format
+autocmd!
+" Formats, then writes buffer
+autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()
+augroup END
 ]]
 vim.api.nvim_exec(auto_format, false) -- Auto-format synchronously buffers
