@@ -8,10 +8,10 @@ nmap <silent> <C-q> <Plug>(ale_previous_wrap)
 nmap <silent> <C-s> <Plug>(ale_next_wrap)
 "Tmux+Vim Integration
 "Easier split navigation
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+" nnoremap <C-J> <C-W><C-J>
+" nnoremap <C-K> <C-W><C-K>
+" nnoremap <C-L> <C-W><C-L>
+" nnoremap <C-H> <C-W><C-H>
 "Map Leader key
 let mapleader=" "
 nnoremap <SPACE> <Nop>
@@ -34,20 +34,20 @@ nnoremap <leader>b :Buffers <CR>
 nnoremap <leader>h :History <CR>
 "Head over to next or previous buffer easily
 nnoremap <Leader>f :Files<CR>
-nnoremap <Leader>r :RG<CR>
-"Write changes to buffer, override!
-nnoremap <Leader>w :w!<CR>
-"Quit NeoVim
-nnoremap <Leader>q :q<CR>
+nnoremap <Leader>r :Rg<CR>
+" Escape term mode
+tnoremap hj <C-\><C-n>
+" Leader t opens term
+nnoremap <leader>t :term<CR>
+" Save buffer
+nnoremap <leader>w :w!<CR>
+" Exit buffer
+nnoremap <leader>x :bd<CR>
+" Disable Elm-vim generic mappings
+" let g:elm_setup_keybindings = 0
 " Escape Terminal Mode
 tnoremap jk <C-\><C-n>
 tnoremap kj <C-\><C-n>
 " Escape Insert Mode
 inoremap jk <Esc>
 inoremap kj <Esc>
-" Leader t opens term
-nnoremap <leader>t :term<CR>
-" Exit Buffer
-nnoremap <leader>x :bd<CR>
-" Disable Elm-vim generic mappings
-" let g:elm_setup_keybindings = 0
