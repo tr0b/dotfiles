@@ -1,13 +1,8 @@
-
 "Aesthetics config
 " let g:lightline = {
 "       \ 'colorscheme': 'wombat',
 "       \ }
 set noshowmode
-set cursorcolumn " Highlight current column
-set cursorline " Highlight current line
-set colorcolumn=80
-set conceallevel=3
 let g:nvcode_termcolors=256
 colorscheme aurora
 set background=dark
@@ -25,6 +20,20 @@ let g:palenight_terminal_italics=1
 " hi! NonText ctermbg=NONE guibg=NONE
 " colorscheme nord
 " NERDTree icons
+set colorcolumn=80
+set conceallevel=3
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+    \ "Modified"  : "",
+    \ "Staged"    : "",
+    \ "Untracked" : "",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "",
+    \ "Dirty"     : "✘ ", 
+    \ "Clean"     : "",
+    \ 'Ignored'   : '',
+    \ "Unknown"   : "?"
+    \ }
 let g:lightline = {
       \ 'colorscheme': 'onedark',
       \ 'active': {
@@ -53,6 +62,8 @@ let g:lightline = {
         \ 't': 'T',
       \ },
       \ }
+"ALE Prettier set use of single quotes
+let g:prettier#config#single_quote = 'true'
 
 " sign define LspDiagnosticsErrorSign text=✗
 " sign define LspDiagnosticsWarningSign text=
