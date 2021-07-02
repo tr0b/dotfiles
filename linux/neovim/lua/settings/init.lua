@@ -37,7 +37,10 @@ vim.o.clipboard = 'unnamed,unnamedplus' -- System clipboard used
 vim.o.hidden = true -- Hide buffers
 vim.o.syntax = 'true' -- Syntax enable
 vim.o.wildmenu = true -- Wildmenu
+vim.o.wildmode="longest:full,full"
 vim.o.path = vim.o.path .. '**' -- path+=**
+vim.o.wildignore = vim.o.wildignore .. [[*/node_modules/*,_site]] -- Ignore dirs
+vim.o.wildignorecase = true -- When searching, ignore case
 vim.wo.number = true -- Set Number
 vim.wo.relativenumber = true -- Set Relative Number
 vim.wo.wrap = false -- no wrap lines

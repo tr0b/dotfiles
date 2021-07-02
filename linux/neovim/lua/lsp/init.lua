@@ -1,6 +1,15 @@
 local lspconfig = require('lspconfig') -- Imports Nvim Native LSP Client
 local diagnostics = require('diagnostics') -- Import diagnostics config
 
+local capabilities = vim.lsp.protocol.make_client_capabilities() -- LSP capabilities
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {
+    'documentation',
+    'detail',
+    'additionalTextEdits',
+  }
+}
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(bufnr)
@@ -33,9 +42,9 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = {'bashls', 'vimls', 'tsserver', 'elmls', 'dockerls', 'elixirls', 'html', 'intelephense', 'solargraph', 'stylelint_lsp'}
+local servers = {'bashls', 'vimls', 'tsserver', 'elmls', 'dockerls', 'elixirls', 'html', 'intelephense', 'solargraph'}
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup { on_attach = on_attach }
+  lspconfig[lsp].setup { on_attach = on_attach, capabilities = capabilities}
 end
 local system_name -- Determine OS
 if vim.fn.has("mac") == 1 then
@@ -60,6 +69,7 @@ table.insert(runtime_path, "lua/?/init.lua")
 lspconfig.sumneko_lua.setup {
   cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
   on_attach = on_attach,
+  capabilities = capabilities,
   settings = {
     Lua = {
       runtime = {
@@ -88,19 +98,11 @@ lspconfig.sumneko_lua.setup {
 lspconfig.elixirls.setup {
   path = '/home/samoht2/.local/bin/elixir-ls/language_server.sh',
   on_attach = on_attach,
+  capabilities = capabilities,
 }
 
 ------------ JSON LANGUAGE SERVER PROTOCOL CONFIGURATION ---------------------
-lspconfig.jsonls.setup {
-  on_attach = on_attach,
-  commands = {
-      Format = {
-        function()
-          vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
-        end
-      }
-    }
-}
+lspconfig.jsonls.setup { on_attach = on_attach }
 
 ------------ GENERIC DIAGNOSTICS LSP (FORMATTING, LINTING) -------------------
 lspconfig.efm.setup {
