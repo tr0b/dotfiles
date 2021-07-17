@@ -35,14 +35,15 @@ local on_attach = function(bufnr)
   buf_set_keymap('n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   buf_set_keymap('n', '<localleader>[', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', '<localleader>]', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  buf_set_keymap('n', '<leader>d', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   buf_set_keymap("n", '<localleader>p', "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  buf_set_keymap("n", '<leader>p', "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
 
 end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = {'bashls', 'vimls', 'tsserver', 'elmls', 'dockerls', 'elixirls', 'html', 'intelephense', 'solargraph'}
+local servers = {'bashls', 'vimls', 'tsserver', 'elmls', 'dockerls', 'jsonls', 'html', 'intelephense', 'solargraph', 'clangd'}
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup { on_attach = on_attach, capabilities = capabilities}
 end
@@ -96,13 +97,10 @@ lspconfig.sumneko_lua.setup {
 
 ------------ ELIXIR LANGUAGE SERVER PROTOCOL CONFIGURATION -------------------
 lspconfig.elixirls.setup {
-  path = '/home/samoht2/.local/bin/elixir-ls/language_server.sh',
+  path = '/home/thomas/.local/bin/elixir-ls/language_server.sh',
   on_attach = on_attach,
   capabilities = capabilities,
 }
-
------------- JSON LANGUAGE SERVER PROTOCOL CONFIGURATION ---------------------
-lspconfig.jsonls.setup { on_attach = on_attach }
 
 ------------ GENERIC DIAGNOSTICS LSP (FORMATTING, LINTING) -------------------
 lspconfig.efm.setup {
