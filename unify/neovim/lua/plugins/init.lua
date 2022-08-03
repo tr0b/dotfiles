@@ -20,4 +20,7 @@ require 'paq' {
         'folke/tokyonight.nvim'; -- Colourscheme
         'akinsho/git-conflict.nvim'; -- Solve conflicts on file in a more interactive way
         'lewis6991/gitsigns.nvim'; -- Add git signs (git blame, hunk, etc)
+        'nvim-lua/plenary.nvim'; -- organizing my life with neorg
+        'nvim-neorg/neorg'; -- organizing my life with neorg
+        'Abstract-IDE/penvim'; -- organizing my life with neorg
 }

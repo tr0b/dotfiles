@@ -1,9 +1,9 @@
 local ts = require 'nvim-treesitter.configs' -- Import Treesitter
 
 ts.setup {
-        autotag = { enable = true, },
+    autotag = { enable = true, },
 	ensure_installed = 'all',
-        ignore_install = { 'haskell' },
+    ignore_install = { 'haskell' },
 	highlight = { enable = true, additional_vim_regex_highlighting = false, },
 	indent = { enable = true },
 	incremental_selection = {
@@ -16,13 +16,6 @@ ts.setup {
 			node_decremental = "grm"
 		}
 	},
-        refactor = {
-                highlight_definitions = {
-                    enable = true,
-      -- Set to false if you have an `updatetime` of ~100.
-                    clear_on_cursor_move = true,
-        },
-  },
 }
 --
 -- Treesitter folding
