@@ -45,3 +45,7 @@ vim.keymap.set('n', '<leader>cb', '<Plug>(git-conflict-both)')
 vim.keymap.set('n', '<leader>cn', '<Plug>(git-conflict-none)')
 vim.keymap.set('n', ']x', '<Plug>(git-conflict-prev-conflict)')
 vim.keymap.set('n', '[x', '<Plug>(git-conflict-next-conflict)')
+
+-- Zen mode keybindings
+
+vim.keymap.set('n', '<leader>z', ':ZenMode<CR>')

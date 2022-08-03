@@ -10,6 +10,7 @@ require 'paq' {
 	{'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}; -- Treesitter
         'm-demare/hlargs.nvim'; -- Highlight args in colour, with treesitter
         'folke/twilight.nvim'; -- dim unfocused code
+        'folke/zen-mode.nvim'; -- Zen mode & twilight for improved focus
 	'junegunn/fzf'; -- Basic FZF
         { 'ms-jpq/coq_nvim', branch = 'coq'}; -- auto completion with coq
         { 'ms-jpq/coq.artifacts', branch = 'artifacts'}; -- snippets
