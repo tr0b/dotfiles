@@ -38,6 +38,7 @@ config.filetypes = { -- Allowed filetypes
         "typescriptreact",
         "json",
         "sh",
+        "php",
 }
 --[[TODO:
 -- Add Lua formatting & linting if possible

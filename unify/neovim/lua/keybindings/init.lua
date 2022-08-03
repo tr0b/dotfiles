@@ -20,7 +20,7 @@ map('t', 'kj', [[<C-\><C-n>]], {noremap = true}) -- jk kj combination to leave t
 map('t', 'jk', [[<C-\><C-n>]], {noremap = true}) -- same as above
 map('i', 'kj', '<Esc>', {noremap = true}) -- Same as above, but in insert mode
 map('i', 'jk', '<Esc>', {noremap = true}) -- Same as above but in Insert mode
-map('n', '<leader>t', ':term<CR>', {noremap = true}) -- open new term easily
+map('n', '<leader>t', ':Twilight<CR>', {noremap = true}) -- open new term easily
 map('n', '<leader>w', ':w!<CR>', {noremap = true}) -- write current buffer to file
 map('n', '<leader>x', ':bd<CR>', {noremap = true}) -- quit current buffer
 map('n', '<leader>f', ':Files<CR>', {noremap = true}) -- FZF files
@@ -29,3 +29,19 @@ map('n', '<leader>h', ':History<CR>', {noremap = true}) -- History search
 map('n', '<leader>b', ':Buffers<CR>', {noremap = true}) -- Buffer search
 vim.api.nvim_exec(fzf, false) -- Activate fzf/rg command
 
+-- git-conflict keybindings --
+require('git-conflict').setup({
+  default_mappings = false, -- disable buffer local mapping created by this plugin
+  disable_diagnostics = false, -- This will disable the diagnostics in a buffer whilst it is conflicted
+  highlights = { -- They must have background color, otherwise the default color will be used
+    incoming = 'DiffText',
+    current = 'DiffAdd',
+  },
+})
+
+vim.keymap.set('n', '<leader>co', '<Plug>(git-conflict-ours)')
+vim.keymap.set('n', '<leader>ct', '<Plug>(git-conflict-theirs)')
+vim.keymap.set('n', '<leader>cb', '<Plug>(git-conflict-both)')
+vim.keymap.set('n', '<leader>cn', '<Plug>(git-conflict-none)')
+vim.keymap.set('n', ']x', '<Plug>(git-conflict-prev-conflict)')
+vim.keymap.set('n', '[x', '<Plug>(git-conflict-next-conflict)')

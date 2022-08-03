@@ -53,7 +53,7 @@ vim.o.ruler = true -- Enable ruler
 vim.o.completeopt=[[longest,menuone,noinsert,noselect]] -- Complete menu options
 vim.wo.conceallevel=3 -- Completely hides concealed text
 vim.bo.expandtab=true -- Use appropiate number of spaces to place <TAB>
-vim.api.nvim_set_var('python3_host_prog', '/usr/bin/python3.9')
+vim.api.nvim_set_var('python3_host_prog', '/usr/bin/python3')
 
 vim.api.nvim_exec(neovim_terminal, false) -- Creates augroup through vimscript, sets GIT_EDITOR term
 vim.api.nvim_exec(undodir, false) -- Creates persistent undodir
