@@ -70,59 +70,12 @@ local lsp_flags = {
   debounce_text_changes = 150,
 }
 
-local system_name -- Determine OS
-if vim.fn.has("mac") == 1 then
-  system_name = "macOS"
-elseif vim.fn.has("unix") == 1 then
-  system_name = "Linux"
-elseif vim.fn.has('win32') == 1 then
-  system_name = "Windows"
-else
-  print("Unsupported system for sumneko")
-end
-
------------- LUA LANGUAGE SERVER PROTOCOL CONFIGURATION ----------------------
--- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
-local sumneko_root_path = vim.fn.stdpath('cache')..'/lspconfig/sumneko_lua/lua-language-server'
-local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
-
-local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
-
+local coq = require('coq')
 -- Automatically start coq
 vim.g.coq_settings = { auto_start = 'shut-up' }
+------------ LUA LANGUAGE SERVER PROTOCOL CONFIGURATION ----------------------
 
-local coq = require('coq')
-
-lspconfig['sumneko_lua'].setup(coq.lsp_ensure_capabilities( {
-  cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
-  on_attach = on_attach,
-  flags = lsp_flags,
-  capabilities = capabilities,
-  settings = {
-    Lua = {
-      runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT',
-        --.setup(coq.lsp_ensure_capabilities( your lua path
-        path = runtime_path,
-      },
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = {'vim'},
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
-      },
-    },
-  },
-}))
+lspconfig['lua_ls'].setup(coq.lsp_ensure_capabilities({}))
 
 ------------ ELIXIR LANGUAGE SERVER PROTOCOL CONFIGURATION -------------------
 lspconfig['elixirls'].setup(coq.lsp_ensure_capabilities( {

@@ -2,25 +2,25 @@ require 'paq' {
 
 	'savq/paq-nvim'; -- Let Paq manage itself
 	'neovim/nvim-lspconfig'; -- LSP for Nvim >= 0.5
-        'ray-x/lsp_signature.nvim'; -- Asynchronous LSP signature help
-        {'whynothugo/lsp_lines.nvim', url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim"};
-        'windwp/nvim-ts-autotag'; -- Autoclose HTML tags
-        {'stevearc/dressing.nvim'}; -- some cool UI hooks for native LSP
-        'lukas-reineke/indent-blankline.nvim'; -- blank line indentation (vertical line)
+	'nvim-tree/nvim-web-devicons'; -- Neovim web dev icons for patched fonts
 	{'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}; -- Treesitter
-        'm-demare/hlargs.nvim'; -- Highlight args in colour, with treesitter
+	{'NvChad/nvim-colorizer.lua', run = function() require('colorizer').setup({}) end}; -- Colorizer (e.g. for CSS colors)
+        {'glepnir/lspsaga.nvim', run = function() require("lspsaga").setup({}) end}; -- LSP Saga
+        {'ibhagwan/fzf-lua', branch = 'main'}; -- Lua FZF
+        {'folke/which-key.nvim', run = function() require("which-key").setup({}) end}; -- Key shortcuts
+        'sindrets/diffview.nvim'; -- Diffview -- Key shortcuts
+        {'TimUntersberger/neogit', run = function() require("neogit").setup({}) end}; -- Neogit
+        {'whynothugo/lsp_lines.nvim', url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim"};
+        'lukas-reineke/indent-blankline.nvim'; -- blank line indentation (vertical line)
         'folke/twilight.nvim'; -- dim unfocused code
         'folke/zen-mode.nvim'; -- Zen mode & twilight for improved focus
-	'junegunn/fzf'; -- Basic FZF
         { 'ms-jpq/coq_nvim', branch = 'coq'}; -- auto completion with coq
         { 'ms-jpq/coq.artifacts', branch = 'artifacts'}; -- snippets
         'ms-jpq/coq.thirdparty'; -- third party snippets
         'windwp/nvim-autopairs'; -- autopairs
-	'junegunn/fzf.vim'; -- Other, pre-defined FZF commands
+        'windwp/nvim-ts-autotag'; -- autotags
         'folke/tokyonight.nvim'; -- Colourscheme
-        'akinsho/git-conflict.nvim'; -- Solve conflicts on file in a more interactive way
         'lewis6991/gitsigns.nvim'; -- Add git signs (git blame, hunk, etc)
         'nvim-lua/plenary.nvim'; -- organizing my life with neorg
-        'nvim-neorg/neorg'; -- organizing my life with neorg
         'Abstract-IDE/penvim'; -- organizing my life with neorg
 }
