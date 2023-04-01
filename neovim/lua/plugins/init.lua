@@ -1,15 +1,14 @@
 require 'paq' {
-
 	'savq/paq-nvim'; -- Let Paq manage itself
 	'neovim/nvim-lspconfig'; -- LSP for Nvim >= 0.5
 	'nvim-tree/nvim-web-devicons'; -- Neovim web dev icons for patched fonts
 	{'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}; -- Treesitter
-	{'NvChad/nvim-colorizer.lua', run = function() require('colorizer').setup({}) end}; -- Colorizer (e.g. for CSS colors)
-        {'glepnir/lspsaga.nvim', run = function() require("lspsaga").setup({}) end}; -- LSP Saga
+	{'NvChad/nvim-colorizer.lua', run = function() require('colorizer').setup() end}; -- Colorizer (e.g. for CSS colors)
+        {'glepnir/lspsaga.nvim', run = function() require("lspsaga").setup() end}; -- LSP Saga
         {'ibhagwan/fzf-lua', branch = 'main'}; -- Lua FZF
-        {'folke/which-key.nvim', run = function() require("which-key").setup({}) end}; -- Key shortcuts
+        {'folke/which-key.nvim', run = function() require("which-key").setup() end}; -- Key shortcuts
         'sindrets/diffview.nvim'; -- Diffview -- Key shortcuts
-        {'TimUntersberger/neogit', run = function() require("neogit").setup({}) end}; -- Neogit
+        {'TimUntersberger/neogit', run = function() require("neogit").setup() end}; -- Neogit
         {'whynothugo/lsp_lines.nvim', url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim"};
         'lukas-reineke/indent-blankline.nvim'; -- blank line indentation (vertical line)
         'folke/twilight.nvim'; -- dim unfocused code

@@ -6,7 +6,7 @@ vim.o.conceallevel = 3 -- MARKDOWN conceal level
 vim.api.nvim_exec([[au ColorScheme * hi Normal ctermbg=none guibg=none]], false)
 -- Regardless of colorscheme, lines should have no bg, fg in gui
 vim.api.nvim_exec([[au ColorScheme * hi LineNr ctermbg=NONE guibg=NONE]], false)
-vim.cmd[[colorscheme tokyonight]]
+vim.cmd.colorscheme('tokyonight-moon')
 
 vim.api.nvim_exec([[
   call sign_define("LspDiagnosticsSignError", {"text" : "✗", "texthl" : "LspDiagnosticsError"})
