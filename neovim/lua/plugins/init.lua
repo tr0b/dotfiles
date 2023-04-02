@@ -6,9 +6,9 @@ require 'paq' {
 	{'NvChad/nvim-colorizer.lua', run = function() require('colorizer').setup() end}; -- Colorizer (e.g. for CSS colors)
         {'glepnir/lspsaga.nvim', run = function() require("lspsaga").setup() end}; -- LSP Saga
         {'ibhagwan/fzf-lua', branch = 'main'}; -- Lua FZF
-        {'folke/which-key.nvim', run = function() require("which-key").setup() end}; -- Key shortcuts
+        'folke/which-key.nvim', -- Shortcut guide
         'sindrets/diffview.nvim'; -- Diffview -- Key shortcuts
-        {'TimUntersberger/neogit', run = function() require("neogit").setup() end}; -- Neogit
+        'kdheepak/lazygit.nvim'; -- Lazygit
         {'whynothugo/lsp_lines.nvim', url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim"};
         'lukas-reineke/indent-blankline.nvim'; -- blank line indentation (vertical line)
         'folke/twilight.nvim'; -- dim unfocused code

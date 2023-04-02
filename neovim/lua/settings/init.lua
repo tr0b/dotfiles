@@ -28,12 +28,13 @@ set undodir=~/.vim/undo-dir
 set undofile
 ]]
 
+vim.o.timeout = true
+vim.o.timeoutlen = 300
 vim.o.smarttab = true -- Smart Tab
 vim.o.expandtab = true -- Expand tab to spaces (use spaces on tab)
 vim.o.cursorline = true -- Set cursorline in file
 vim.o.autoindent = true -- Auto Indent
 vim.bo.smartindent = true -- Smart Indent
-vim.o.clipboard = 'unnamed,unnamedplus' -- System clipboard used
 vim.o.hidden = true -- Hide buffers
 vim.o.syntax = 'true' -- Syntax enable
 vim.o.wildmenu = true -- Wildmenu
