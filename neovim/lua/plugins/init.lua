@@ -24,4 +24,7 @@ require 'paq' {
         'Abstract-IDE/penvim'; -- organizing my life with neorg
         'Bekaboo/deadcolumn.nvim'; -- Dynamic, color columns
         'm-demare/hlargs.nvim'; -- Semantic highlight args (todo: change to use native neovim semantic tokens)
+        'nvim-lualine/lualine.nvim'; -- Awesome status line with Lua
+        'nvim-lualine/lualine.nvim'; -- Awesome status line with Lua
+        'nvim-neorg/neorg'; -- Organze my life with Neorg
 }
