@@ -75,6 +75,10 @@ vim.g.coq_settings = { auto_start = 'shut-up' }
 ------------ LUA LANGUAGE SERVER PROTOCOL CONFIGURATION ----------------------
 
 lspconfig['lua_ls'].setup(coq.lsp_ensure_capabilities({
+  filetypes = { "lua" },
+  on_attach = on_attach,
+  flags = lsp_flags,
+  capabilities = capabalities,
   settings = {
     Lua = {
       runtime = {

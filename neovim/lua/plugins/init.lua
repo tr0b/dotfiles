@@ -18,8 +18,9 @@ require 'paq' {
         'ms-jpq/coq.thirdparty'; -- third party snippets
         'windwp/nvim-autopairs'; -- autopairs
         'windwp/nvim-ts-autotag'; -- autotags
-        'folke/tokyonight.nvim'; -- Colourscheme
+        'rebelot/kanagawa.nvim'; -- Colourscheme
         'lewis6991/gitsigns.nvim'; -- Add git signs (git blame, hunk, etc)
         'nvim-lua/plenary.nvim'; -- organizing my life with neorg
         'Abstract-IDE/penvim'; -- organizing my life with neorg
+        'Bekaboo/deadcolumn.nvim'; -- Dynamic, color columns
 }
