@@ -4,7 +4,7 @@ require 'paq' {
 	'nvim-tree/nvim-web-devicons'; -- Neovim web dev icons for patched fonts
 	{'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}; -- Treesitter
 	{'NvChad/nvim-colorizer.lua', run = function() require('colorizer').setup() end}; -- Colorizer (e.g. for CSS colors)
-        {'glepnir/lspsaga.nvim', run = function() require("lspsaga").setup() end}; -- LSP Saga
+        'glepnir/lspsaga.nvim'; -- LSP Saga
         {'ibhagwan/fzf-lua', branch = 'main'}; -- Lua FZF
         'folke/which-key.nvim', -- Shortcut guide
         'sindrets/diffview.nvim'; -- Diffview -- Key shortcuts
@@ -23,4 +23,5 @@ require 'paq' {
         'nvim-lua/plenary.nvim'; -- organizing my life with neorg
         'Abstract-IDE/penvim'; -- organizing my life with neorg
         'Bekaboo/deadcolumn.nvim'; -- Dynamic, color columns
+        'm-demare/hlargs.nvim'; -- Semantic highlight args (todo: change to use native neovim semantic tokens)
 }

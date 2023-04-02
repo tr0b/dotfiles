@@ -26,7 +26,6 @@ map('n', '<leader>lq', ':LspInfo<CR>', {noremap = true, desc = "LSP Information"
 map('n', '<leader>lr', function() fzf.lsp_references() end, {noremap = true, desc = "LSP References"}) -- LSP References
 map('n', '<leader>ldf', function() fzf.lsp_definitions() end, {noremap = true, desc = "[LSP] Definitions"}) -- LSP Definitions
 map('n', '<leader>ldc', function() fzf.lsp_definitions() end, {noremap = true, desc = "[LSP] Declarations"}) -- LSP Declarations
-map('n', '<leader>lc', function() fzf.lsp_code_actions() end, {noremap = true, desc = "[LSP] Code Actions"}) -- LSP Code Actions
 map('n', '<leader>ps', ':PaqSync<CR>', {noremap = true, desc = "Paq Sync"}) -- Paq Sync (remove, update, add packages)
 map('n', '<leader>pl', ':PaqList<CR>', {noremap = true, desc = "Paq List"}) -- Paq List
 map('n', '<leader>gg', ':LazyGit<CR>', {noremap = true, desc = "Lazy Git"}) -- Lazy Git

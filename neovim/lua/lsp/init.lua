@@ -1,5 +1,7 @@
+require("lspsaga").setup({})
 local lspconfig = require('lspconfig') -- Imports Nvim Native LSP Client
 local diagnostics = require('diagnostics') -- Import diagnostics config
+local keymap = vim.keymap.set
 
 local capabilities = vim.lsp.protocol.make_client_capabilities() -- LSP capabilities
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -11,10 +13,12 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
   }
 }
 
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { noremap=true, silent=true, desc = "Diagnostics Open [Float]" })
-vim.keymap.set('n', '<localleader>[', vim.diagnostic.goto_prev, { noremap=true, silent=true, desc = "Go To Next Diagnostic" })
-vim.keymap.set('n', '<localleader>]', vim.diagnostic.goto_next, { noremap=true, silent=true, desc = "Go To Previous Diagnostic" })
-vim.keymap.set('n', '<leader>d', vim.diagnostic.setloclist, { noremap=true, silent=true, "Diagnostics Open [List]" })
+keymap('n', '<leader>ldl', "<cmd>Lspsaga show_line_diagnostics<CR>", { desc = "Show Line Diagnostics", })
+keymap('n', '<leader>ldb',  "<cmd>Lspsaga show_buf_diagnostics<CR>", { desc = "Show Buffer Diagnostics", })
+keymap('n', '<leader>ldw', "<cmd>Lspsaga show_workspace_diagnostics<CR>", { desc = "Show Workspace Diagnostics", })
+keymap('n', '<leader>ldc', "<cmd>Lspsaga show_cursor_diagnostics<CR>", { desc = "Show Cursor Diagnostics", })
+keymap('n', '<localleader>[', "<cmd>Lspsaga diagnostic_jump_prev<CR>", { noremap=true, silent=true, desc = "Go To Next Diagnostic", })
+keymap('n', '<localleader>]', "<cmd>Lspsaga diagnostic_jump_next<CR>", { noremap=true, silent=true, desc = "Go To Previous Diagnostic", })
 
 local lsp_formatting = function(bufnr)
     vim.lsp.buf.format({
@@ -50,17 +54,19 @@ local on_attach = function(client, bufnr)
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set('n', '<localleader>k', vim.lsp.buf.signature_help, bufopts)
-  vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', '<leader>n', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<leader>c', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', '<localleader>r', vim.lsp.buf.references, bufopts)
-  vim.keymap.set("n", '<localleader>p', lsp_formatting, bufopts)
-  vim.keymap.set("n", '<leader>p', vim.lsp.buf.range_formatting, bufopts)
+  keymap('n', 'lgD', vim.lsp.buf.declaration, {noremap=true, silent=true, buffer=bufnr, desc="Go to Declaratio"})
+  keymap('n', 'lgd',"<cmd>Lspsaga goto_definition<CR>", {noremap=true, silent=true, buffer=bufnr, desc="Go to Definition"})
+  keymap('n', 'lpd', "<cmd>Lspsaga peek_definition<CR>", {noremap=true, silent=true, buffer=bufnr, desc="Peek Definition"})
+  keymap('n', 'K', "<cmd>Lspsaga hover_doc<CR>", {noremap=true, silent=true, buffer=bufnr, desc="Hover Documentation"})
+  keymap('n', 'gi', "<cmd> Lspsaga lsp_finder<CR>", {noremap=true, silent=true, buffer=bufnr, desc="Lsp Finder"})
+  keymap('n', '<localleader>k', vim.lsp.buf.signature_help, bufopts)
+  keymap('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
+  keymap('n', '<leader>ln', "<cmd>Lspsaga rename ++project<CR>", {noremap=true, silent=true, buffer=bufnr, desc="Rename"})
+  keymap('n', '<leader>lc',  "<cmd>Lspsaga code_action<CR>", {noremap=true, silent=true, buffer=bufnr, desc="[LSP] Code Action"})
+  keymap('n', '<localleader>r', vim.lsp.buf.references, bufopts)
+  keymap("n", '<localleader>p', lsp_formatting, bufopts)
+  keymap("n", '<leader>p', vim.lsp.buf.format, bufopts)
+
 
 end
 
@@ -69,9 +75,9 @@ local lsp_flags = {
   debounce_text_changes = 150,
 }
 
-local coq = require('coq')
 -- Automatically start coq
 vim.g.coq_settings = { auto_start = 'shut-up' }
+local coq = require('coq')
 ------------ LUA LANGUAGE SERVER PROTOCOL CONFIGURATION ----------------------
 
 lspconfig['lua_ls'].setup(coq.lsp_ensure_capabilities({
@@ -118,7 +124,7 @@ lspconfig['efm'].setup {
         filetypes = diagnostics.filetypes
 }
 
-local servers = { 'tsserver', 'sonls', 'phpactor', 'bashls', 'clangd' }
+local servers = { 'tsserver', 'phpactor', 'bashls', 'clangd' }
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup(coq.lsp_ensure_capabilities({
@@ -126,8 +132,8 @@ for _, lsp in ipairs(servers) do
   }))
 end
 -- Signature help
-local signature_config = {}  -- add you config here
-require "lsp_signature".setup(signature_config)
+-- local signature_config = {}  -- add you config here
+-- require "lsp_signature".setup(signature_config)
 
 -- LSP virtual lines
 vim.diagnostic.config({ -- disable virtual text from vim diagnostic in order to avoid redundancy
