@@ -30,6 +30,7 @@ map('n', '<leader>pl', ':PaqList<CR>', {noremap = true, desc = "Paq List"}) -- P
 map('n', '<leader>gg', ':LazyGit<CR>', {noremap = true, desc = "Lazy Git"}) -- Lazy Git
 map('n', '<leader>t', '<cmd>exe v:count1 . "ToggleTerm direction=float"<CR>', {silent = true, noremap = true, desc = "Open Terminal"}) -- Terminal
 map('i', '<c-t>', '<Esc><cmd>exe v:count1 . "ToggleTerm direction=float"<CR>', {silent = true, noremap = true, desc = "Open Terminal"}) -- Terminal
+map('n', '<leader>m', ':Mason<CR>', {noremap = true, desc = "Mason"}) -- Terminal
 -- Zen mode keybindings
 
 map('n', '<leader>z', ':ZenMode<CR>', {desc = "Enable Zen Mode"})
