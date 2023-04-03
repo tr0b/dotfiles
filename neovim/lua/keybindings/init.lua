@@ -10,7 +10,6 @@ map('t', 'kj', [[<C-\><C-n>]], {noremap = true}) -- jk kj combination to leave t
 map('t', 'jk', [[<C-\><C-n>]], {noremap = true}) -- same as above
 map('i', 'kj', '<Esc>', {noremap = true}) -- Same as above, but in insert mode
 map('i', 'jk', '<Esc>', {noremap = true}) -- Same as above but in Insert mode
-map('n', '<leader>t', ':Twilight<CR>', {noremap = true, desc = "Enable Twilight"}) -- open new term easily
 map('n', '<leader>w', ':w!<CR>', {noremap = true, desc = "Save current buffer (!)"}) -- write current buffer to file
 map('n', '<leader>x', ':bd<CR>', {noremap = true, desc = "Close Buffer"}) -- quit current buffer
 map('n', '<leader>fo', function() fzf.files() end, {noremap = true, desc = "Open File"}) -- FZF files
@@ -29,6 +28,8 @@ map('n', '<leader>ldc', function() fzf.lsp_definitions() end, {noremap = true, d
 map('n', '<leader>ps', ':PaqSync<CR>', {noremap = true, desc = "Paq Sync"}) -- Paq Sync (remove, update, add packages)
 map('n', '<leader>pl', ':PaqList<CR>', {noremap = true, desc = "Paq List"}) -- Paq List
 map('n', '<leader>gg', ':LazyGit<CR>', {noremap = true, desc = "Lazy Git"}) -- Lazy Git
+map('n', '<leader>t', '<cmd>exe v:count1 . "ToggleTerm direction=float"<CR>', {silent = true, noremap = true, desc = "Open Terminal"}) -- Terminal
+map('i', '<c-t>', '<Esc><cmd>exe v:count1 . "ToggleTerm direction=float"<CR>', {silent = true, noremap = true, desc = "Open Terminal"}) -- Terminal
 -- Zen mode keybindings
 
 map('n', '<leader>z', ':ZenMode<CR>', {desc = "Enable Zen Mode"})
@@ -53,3 +54,17 @@ wk.register({
                 name = "Paq",
         },
 })
+
+-- Toggle term keymaps
+function _G.set_terminal_keymaps()
+  local opts = {buffer = 0}
+  map('t', '<esc>', [[<C-\><C-n>]], opts)
+  map('t', 'jk', [[<C-\><C-n>]], opts)
+  map('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
+  map('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
+  map('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
+  map('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
+end
+
+-- if you only want these mappings for toggle term use term://*toggleterm#* instead
+vim.cmd('autocmd! TermOpen term://*toggleterm#* lua set_terminal_keymaps()')

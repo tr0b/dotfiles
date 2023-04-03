@@ -3,7 +3,7 @@ require 'paq' {
 	'neovim/nvim-lspconfig'; -- LSP for Nvim >= 0.5
 	'nvim-tree/nvim-web-devicons'; -- Neovim web dev icons for patched fonts
 	{'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}; -- Treesitter
-	{'NvChad/nvim-colorizer.lua', run = function() require('colorizer').setup() end}; -- Colorizer (e.g. for CSS colors)
+	'NvChad/nvim-colorizer.lua'; -- Colorizer (e.g. for CSS colors)
         'glepnir/lspsaga.nvim'; -- LSP Saga
         {'ibhagwan/fzf-lua', branch = 'main'}; -- Lua FZF
         'folke/which-key.nvim', -- Shortcut guide
@@ -27,4 +27,8 @@ require 'paq' {
         'nvim-lualine/lualine.nvim'; -- Awesome status line with Lua
         'nvim-lualine/lualine.nvim'; -- Awesome status line with Lua
         'nvim-neorg/neorg'; -- Organze my life with Neorg
+        'folke/neodev.nvim'; -- Recommended for DAP
+        'mfussenegger/nvim-dap'; -- Neovim Debugger Adapter Protocol (DAP)
+        'rcarriga/nvim-dap-ui'; -- DAP UI
+        'akinsho/toggleterm.nvim';
 }

@@ -241,3 +241,10 @@ ins_right {
 
 -- Now don't forget to initialize lualine
 lualine.setup(config)
+
+-- ToggleTerm config
+require("toggleterm").setup({
+  open_mapping = [[<c-\>]],
+  direction = 'float',
+  close_on_exit = true,
+})

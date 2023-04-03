@@ -60,7 +60,7 @@ local on_attach = function(client, bufnr)
   keymap('n', 'K', "<cmd>Lspsaga hover_doc<CR>", {noremap=true, silent=true, buffer=bufnr, desc="Hover Documentation"})
   keymap('n', 'gi', "<cmd> Lspsaga lsp_finder<CR>", {noremap=true, silent=true, buffer=bufnr, desc="Lsp Finder"})
   keymap('n', '<localleader>k', vim.lsp.buf.signature_help, bufopts)
-  keymap('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
+  keymap('n', '<leader>D', vim.lsp.buf.type_definition, {noremap=true, silent=true, buffer=bufnr, desc="Type Definition"})
   keymap('n', '<leader>ln', "<cmd>Lspsaga rename ++project<CR>", {noremap=true, silent=true, buffer=bufnr, desc="Rename"})
   keymap('n', '<leader>lc',  "<cmd>Lspsaga code_action<CR>", {noremap=true, silent=true, buffer=bufnr, desc="[LSP] Code Action"})
   keymap('n', '<localleader>r', vim.lsp.buf.references, bufopts)
@@ -142,3 +142,19 @@ vim.diagnostic.config({ -- disable virtual text from vim diagnostic in order to 
 })
 
 require("lsp_lines").setup()
+
+-- DAP CONFIG --
+require("neodev").setup({
+  library = { plugins = { "nvim-dap-ui" }, types = true },
+})
+
+local dap, dapui = require("dap"), require("dapui")
+dap.listeners.after.event_initialized["dapui_config"] = function()
+  dapui.open()
+end
+dap.listeners.before.event_terminated["dapui_config"] = function()
+  dapui.close()
+end
+dap.listeners.before.event_exited["dapui_config"] = function()
+  dapui.close()
+end
