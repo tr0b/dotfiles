@@ -34,4 +34,11 @@ require("paq")({
 	"williamboman/mason.nvim", -- Handle LSP,DAPs automatically
 	"williamboman/mason-lspconfig.nvim", -- Automatic LSP configuration
 	"jose-elias-alvarez/typescript.nvim", -- Better typescript utils and LSP
+	"ray-x/go.nvim", -- Go utils
+	"nvim-neotest/neotest", -- Neotest
+	"antoinemadec/FixCursorHold.nvim", -- optimizes cursor hold event, for neotest
+	"nvim-neotest/neotest-go", -- Neotest adapter for go
+	"haydenmeade/neotest-jest",
+	"olimorris/neotest-rspec",
+	"ray-x/guihua.lua",
 })

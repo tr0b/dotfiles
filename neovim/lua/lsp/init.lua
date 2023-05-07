@@ -1,7 +1,7 @@
 require("lspsaga").setup({})
 local lspconfig = require("lspconfig") -- Imports Nvim Native LSP Client
 local diagnostics = require("diagnostics") -- Import diagnostics config
-local keymap = vim.keymap.set
+local map = vim.keymap.set
 
 local capabilities = vim.lsp.protocol.make_client_capabilities() -- LSP capabilities
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -12,24 +12,6 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 		"additionalTextEdits",
 	},
 }
-
-keymap("n", "<leader>ldl", "<cmd>Lspsaga show_line_diagnostics<CR>", { desc = "Show Line Diagnostics" })
-keymap("n", "<leader>ldb", "<cmd>Lspsaga show_buf_diagnostics<CR>", { desc = "Show Buffer Diagnostics" })
-keymap("n", "<leader>ldw", "<cmd>Lspsaga show_workspace_diagnostics<CR>", { desc = "Show Workspace Diagnostics" })
-keymap("n", "<leader>ldc", "<cmd>Lspsaga show_cursor_diagnostics<CR>", { desc = "Show Cursor Diagnostics" })
-keymap(
-	"n",
-	"<localleader>[",
-	"<cmd>Lspsaga diagnostic_jump_prev<CR>",
-	{ noremap = true, silent = true, desc = "Go To Next Diagnostic" }
-)
-keymap(
-	"n",
-	"<localleader>]",
-	"<cmd>Lspsaga diagnostic_jump_next<CR>",
-	{ noremap = true, silent = true, desc = "Go To Previous Diagnostic" }
-)
-
 local lsp_formatting = function(bufnr)
 	vim.lsp.buf.format({
 		filter = function(client)
@@ -60,61 +42,30 @@ local on_attach = function(client, bufnr)
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
 	-- Mappings.
-	local bufopts = { noremap = true, silent = true, buffer = bufnr }
+	local mappings = {
+		{ "n", "gD", vim.lsp.buf.declaration, "Go to Declaration" },
+		{ "n", "gd", "<cmd>Lspsaga goto_definition<CR>", "Go to Definition" },
+		{ "n", "gp", "<cmd>Lspsaga peek_definition<CR>", "Peek Definition" },
+		{ "n", "K", "<cmd>Lspsaga hover_doc<CR>", "Hover Documentation" },
+		{ "n", "gi", "<cmd>Lspsaga lsp_finder<CR>", "Lsp Finder" },
+		{ "n", "<leader>s", vim.lsp.buf.signature_help, "Signature Help" },
+		{ "n", "<leader>D", vim.lsp.buf.type_definition, "Type Definition" },
+		{ "n", "<leader>ln", "<cmd>Lspsaga rename ++project<CR>", "Rename" },
+		{ "n", "<leader>c", "<cmd>Lspsaga code_action<CR>", "[LSP] Code Action" },
+		{ "n", "<leader>r", vim.lsp.buf.references, "References" },
+		{ "n", "<localleader>f", lsp_formatting, "Formatting" },
+		{ "n", "<leader>ldl", "<cmd>Lspsaga show_line_diagnostics<CR>", "Show Line Diagnostics" },
+		{ "n", "<leader>ldb", "<cmd>Lspsaga show_buf_diagnostics<CR>", "Show Buffer Diagnostics" },
+		{ "n", "<leader>ldw", "<cmd>Lspsaga show_workspace_diagnostics<CR>", "Show Workspace Diagnostics" },
+		{ "n", "<leader>ldc", "<cmd>Lspsaga show_cursor_diagnostics<CR>", "Show Cursor Diagnostics" },
+		{ "n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", "Go To Next Diagnostic" },
+		{ "n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", "Go To Previous Diagnostic" },
+	}
 
-	-- See `:help vim.lsp.*` for documentation on any of the below functions
-	keymap(
-		"n",
-		"lgD",
-		vim.lsp.buf.declaration,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "Go to Declaratio" }
-	)
-	keymap(
-		"n",
-		"lgd",
-		"<cmd>Lspsaga goto_definition<CR>",
-		{ noremap = true, silent = true, buffer = bufnr, desc = "Go to Definition" }
-	)
-	keymap(
-		"n",
-		"lpd",
-		"<cmd>Lspsaga peek_definition<CR>",
-		{ noremap = true, silent = true, buffer = bufnr, desc = "Peek Definition" }
-	)
-	keymap(
-		"n",
-		"K",
-		"<cmd>Lspsaga hover_doc<CR>",
-		{ noremap = true, silent = true, buffer = bufnr, desc = "Hover Documentation" }
-	)
-	keymap(
-		"n",
-		"gi",
-		"<cmd> Lspsaga lsp_finder<CR>",
-		{ noremap = true, silent = true, buffer = bufnr, desc = "Lsp Finder" }
-	)
-	keymap("n", "<localleader>k", vim.lsp.buf.signature_help, bufopts)
-	keymap(
-		"n",
-		"<leader>D",
-		vim.lsp.buf.type_definition,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "Type Definition" }
-	)
-	keymap(
-		"n",
-		"<leader>ln",
-		"<cmd>Lspsaga rename ++project<CR>",
-		{ noremap = true, silent = true, buffer = bufnr, desc = "Rename" }
-	)
-	keymap(
-		"n",
-		"<leader>lc",
-		"<cmd>Lspsaga code_action<CR>",
-		{ noremap = true, silent = true, buffer = bufnr, desc = "[LSP] Code Action" }
-	)
-	keymap("n", "<localleader>r", vim.lsp.buf.references, bufopts)
-	keymap("n", "<localleader>p", lsp_formatting, bufopts)
-	keymap("n", "<leader>p", vim.lsp.buf.format, bufopts)
+	for _, m in ipairs(mappings) do
+		m[3] = m[3] or m[2]
+		map(m[1], m[2], m[3], { noremap = true, silent = true, buffer = bufnr, desc = m[4] })
+	end
 end
 
 local lsp_flags = {
@@ -138,9 +89,9 @@ vim.diagnostic.config({ -- disable virtual text from vim diagnostic in order to 
 
 require("lsp_lines").setup()
 
--- DAP CONFIG --
+-- Neodev CONFIG --
 require("neodev").setup({
-	library = { plugins = { "nvim-dap-ui" }, types = true },
+	library = { plugins = { "nvim-dap-ui", "neotest" }, types = true },
 })
 
 local dap, dapui = require("dap"), require("dapui")
@@ -203,4 +154,46 @@ require("mason-lspconfig").setup_handlers({
 			}),
 		})
 	end,
+})
+require("go").setup({
+	lsp_cfg = false,
+	-- other setups...
+})
+local cfg = require("go.lsp").config() -- config() return the go.nvim gopls setup
+
+require("lspconfig").gopls.setup(cfg)
+
+-- Run gofmt + goimport on save
+
+local format_sync_grp = vim.api.nvim_create_augroup("GoImport", {})
+vim.api.nvim_create_autocmd("BufWritePre", {
+	pattern = "*.go",
+	callback = function()
+		require("go.format").goimport()
+	end,
+	group = format_sync_grp,
+})
+
+-- Clearer golang diagnostics
+local neotest_ns = vim.api.nvim_create_namespace("neotest")
+vim.diagnostic.config({
+	virtual_text = {
+		format = function(diagnostic)
+			local message = diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
+			return message
+		end,
+	},
+}, neotest_ns)
+
+-- Neotest setup
+require("neotest").setup({
+	adapters = {
+		require("neotest-go")({
+			dap = { justMyCode = false },
+		}),
+		require("neotest-jest"),
+		require("neotest-rspec")({
+			ignore_file_types = { "python", "vim", "lua" },
+		}),
+	},
 })
