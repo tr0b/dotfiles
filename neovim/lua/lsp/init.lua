@@ -196,4 +196,9 @@ require("neotest").setup({
 			ignore_file_types = { "python", "vim", "lua" },
 		}),
 	},
+	status = {
+		enabled = true,
+		signs = true,
+		virtual_text = true,
+	},
 })

@@ -25,8 +25,7 @@ require("paq")({
 	"Bekaboo/deadcolumn.nvim", -- Dynamic, color columns
 	"m-demare/hlargs.nvim", -- Semantic highlight args (todo: change to use native neovim semantic tokens)
 	"nvim-lualine/lualine.nvim", -- Awesome status line with Lua
-	"nvim-lualine/lualine.nvim", -- Awesome status line with Lua
-	"nvim-neorg/neorg", -- Organze my life with Neorg
+	"nvim-neorg/neorg", -- Organize my life with Neorg
 	"folke/neodev.nvim", -- Recommended for DAP
 	"mfussenegger/nvim-dap", -- Neovim Debugger Adapter Protocol (DAP)
 	"rcarriga/nvim-dap-ui", -- DAP UI

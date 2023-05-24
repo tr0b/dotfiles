@@ -1,16 +1,16 @@
-local neorg = require('neorg')
+local neorg = require("neorg")
 
-neorg.setup {
-        load = {
-                ["core.defaults"] = { },
-                ["core.norg.dirman"] = {
-                        config = {
-                                workspaces = {
-                                        work = "~/notes/work",
-                                }
-                        }
-                },
-                ["core.norg.concealer"] = { },
-                ["core.norg.journal"] = { },
-        }
-}
+neorg.setup({
+	load = {
+		["core.defaults"] = {},
+		["core.norg.dirman"] = {
+			config = {
+				workspaces = {
+					work = "~/notes/work",
+				},
+			},
+		},
+		["core.norg.concealer"] = {},
+		["core.norg.journal"] = {},
+	},
+})

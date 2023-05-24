@@ -2,6 +2,13 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 local map = vim.keymap.set -- Alias for setting keymap
 local fzf = require("fzf-lua")
+fzf.setup({
+	files = {
+		actions = {
+			["default"] = require("fzf-lua.actions").file_edit,
+		},
+	},
+})
 
 local function bind_keys(mappings)
 	for _, m in ipairs(mappings) do
