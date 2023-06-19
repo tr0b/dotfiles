@@ -20,7 +20,7 @@ local fzf_maps = {
 	{ "n", "<c-p>", fzf.files, "Open File" },
 	{ "n", "<c-l>", fzf.live_grep, "Live Grep (rg if possible)" },
 	{ "n", "<c-s>", fzf.oldfiles, "Open Old Files (History)" },
-	{ "n", "<c-b>", fzf.buffers, "Open Buffer" },
+	{ "n", "<leader>b", fzf.buffers, "Open Buffer" },
 	{ "n", "<leader>gf", fzf.git_files, "Open Git file" },
 	{ "n", "<leader>gs", fzf.git_status, "Git Status Files" },
 	{ "n", "<leader>gl", fzf.git_commits, "Git Log Commits (Project)" },
