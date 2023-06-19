@@ -36,8 +36,7 @@ local mappings = {
 	{ "i", "jk", "<Esc>" },
 	{ "n", "<leader>w", ":w!<CR>", "Save current buffer (!)" },
 	{ "n", "<leader>x", ":bd<CR>", "Close Buffer" },
-	{ "n", "<leader>ps", ":PaqSync<CR>", "Paq Sync (remove, update, add packages)" },
-	{ "n", "<leader>pl", ":PaqList<CR>", "Paq List" },
+	{ "n", "<leader>p", ":Lazy<CR>", "Paq Sync (remove, update, add packages)" },
 	{ "n", "<leader>gg", ":LazyGit<CR>", "Lazy Git" },
 	{ "n", "<leader>m", ":Mason<CR>", "Mason" },
 	{ "n", "<leader>z", ":ZenMode<CR>", "Enable Zen Mode" },
@@ -63,7 +62,6 @@ local neotest_summary = { "<cmd>lua require('neotest').summary.toggle()<cr>", "S
 wk.register({
 	["<leader>g"] = { name = "Git" },
 	["<leader>l"] = { name = "LSP" },
-	["<leader>p"] = { name = "Paq" },
 	["<leader>n"] = {
 		name = "Neotest",
 		a = neotest_attach,

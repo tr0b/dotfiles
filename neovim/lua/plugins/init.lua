@@ -1,8 +1,7 @@
-require("paq")({
-	"savq/paq-nvim", -- Let Paq manage itself
+require("lazy").setup({
 	"neovim/nvim-lspconfig", -- LSP for Nvim >= 0.5
 	"nvim-tree/nvim-web-devicons", -- Neovim web dev icons for patched fonts
-	{ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }, -- Treesitter
+	{ "nvim-treesitter/nvim-treesitter", cmd = "TSUpdate" }, -- Treesitter
 	"NvChad/nvim-colorizer.lua", -- Colorizer (e.g. for CSS colors)
 	"glepnir/lspsaga.nvim", -- LSP Saga
 	{ "ibhagwan/fzf-lua", branch = "main" }, -- Lua FZF
@@ -26,18 +25,18 @@ require("paq")({
 	"m-demare/hlargs.nvim", -- Semantic highlight args (todo: change to use native neovim semantic tokens)
 	"nvim-lualine/lualine.nvim", -- Awesome status line with Lua
 	"nvim-neorg/neorg", -- Organize my life with Neorg
-	"folke/neodev.nvim", -- Recommended for DAP
-	"mfussenegger/nvim-dap", -- Neovim Debugger Adapter Protocol (DAP)
-	"rcarriga/nvim-dap-ui", -- DAP UI
+	-- "folke/neodev.nvim", -- Recommended for DAP
+	-- "mfussenegger/nvim-dap", -- Neovim Debugger Adapter Protocol (DAP)
+	-- "rcarriga/nvim-dap-ui", -- DAP UI
 	"akinsho/toggleterm.nvim",
 	"williamboman/mason.nvim", -- Handle LSP,DAPs automatically
 	"williamboman/mason-lspconfig.nvim", -- Automatic LSP configuration
-	"jose-elias-alvarez/typescript.nvim", -- Better typescript utils and LSP
-	"ray-x/go.nvim", -- Go utils
-	"nvim-neotest/neotest", -- Neotest
-	"antoinemadec/FixCursorHold.nvim", -- optimizes cursor hold event, for neotest
-	"nvim-neotest/neotest-go", -- Neotest adapter for go
-	"haydenmeade/neotest-jest",
-	"olimorris/neotest-rspec",
-	"ray-x/guihua.lua",
+	-- "ray-x/go.nvim", -- Go utils
+	-- "nvim-neotest/neotest", -- Neotest
+	-- "antoinemadec/FixCursorHold.nvim", -- optimizes cursor hold event, for neotest
+	-- "nvim-neotest/neotest-go", -- Neotest adapter for go
+	-- "haydenmeade/neotest-jest",
+	-- "olimorris/neotest-rspec",
+	"ray-x/guihua.lua", -- Some GUI enhancements for plugins
+	{ "zbirenbaum/copilot.lua" }, -- Copilot for Neovim
 })
