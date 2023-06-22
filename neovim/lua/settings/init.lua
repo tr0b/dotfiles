@@ -1,6 +1,6 @@
 -- [[ Neovim Terminal tweaks.
 -- Since augroup  & auto-commands are still not implemented in Lua, we have to
--- directly call the nvim api and define the autocommand, so that it can be 
+-- directly call the nvim api and define the autocommand, so that it can be
 -- evaluated as Vimscript code ]] --
 local neovim_terminal = [[
   augroup neovim_terminal
@@ -15,6 +15,8 @@ local neovim_terminal = [[
     autocmd BufEnter,TermLeave * :set number relativenumber
   augroup END
   let $GIT_EDITOR = 'nvr --remote-wait'
+  " If you don't like using :w | bd and prefer the good old :wq (or :x), put the following in your vimrc:
+  autocmd FileType gitcommit,gitrebase,gitconfig set bufhidden=delete
 ]]
 
 local undodir = [[
@@ -36,25 +38,25 @@ vim.o.cursorline = true -- Set cursorline in file
 vim.o.autoindent = true -- Auto Indent
 vim.bo.smartindent = true -- Smart Indent
 vim.o.hidden = true -- Hide buffers
-vim.o.syntax = 'true' -- Syntax enable
+vim.o.syntax = "true" -- Syntax enable
 vim.o.wildmenu = true -- Wildmenu
-vim.o.wildmode="longest:full,full"
-vim.o.path = vim.o.path .. '**' -- path+=**
+vim.o.wildmode = "longest:full,full"
+vim.o.path = vim.o.path .. "**" -- path+=**
 vim.o.wildignore = vim.o.wildignore .. [[*/node_modules/*,_site]] -- Ignore dirs
 vim.o.wildignorecase = true -- When searching, ignore case
 vim.wo.number = true -- Set Number
 vim.wo.relativenumber = true -- Set Relative Number
 vim.wo.wrap = false -- no wrap lines
-vim.o.inccommand = 'nosplit' -- live preview search & replace
+vim.o.inccommand = "nosplit" -- live preview search & replace
 vim.o.ignorecase = true -- Ignores case in search
 vim.o.smartcase = true -- Applies smartcase
 vim.o.undofile = true -- Permanent undofile
 vim.o.lazyredraw = true -- Lazy redraw, slightly optimize macros execution
 vim.o.ruler = true -- Enable ruler
-vim.o.completeopt=[[longest,menuone,noinsert,noselect]] -- Complete menu options
-vim.wo.conceallevel=3 -- Completely hides concealed text
-vim.bo.expandtab=true -- Use appropiate number of spaces to place <TAB>
-vim.api.nvim_set_var('python3_host_prog', '/usr/bin/python3')
+vim.o.completeopt = [[longest,menuone,noinsert,noselect]] -- Complete menu options
+vim.wo.conceallevel = 3 -- Completely hides concealed text
+vim.bo.expandtab = true -- Use appropiate number of spaces to place <TAB>
+vim.api.nvim_set_var("python3_host_prog", "/usr/bin/python3")
 
 vim.api.nvim_exec(neovim_terminal, false) -- Creates augroup through vimscript, sets GIT_EDITOR term
 vim.api.nvim_exec(undodir, false) -- Creates persistent undodir
