@@ -10,13 +10,30 @@ require("lazy").setup({
 	"kdheepak/lazygit.nvim", -- Lazygit
 	{ "whynothugo/lsp_lines.nvim", url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim" },
 	"lukas-reineke/indent-blankline.nvim", -- blank line indentation (vertical line)
-	"folke/twilight.nvim", -- dim unfocused code
-	"folke/zen-mode.nvim", -- Zen mode & twilight for improved focus
-	{ "ms-jpq/coq_nvim", branch = "coq" }, -- auto completion with coq
-	{ "ms-jpq/coq.artifacts", branch = "artifacts" }, -- snippets
-	"ms-jpq/coq.thirdparty", -- third party snippets
-	"windwp/nvim-autopairs", -- autopairs
-	"windwp/nvim-ts-autotag", -- autotags
+	"folke/twilight.nvim",
+	"folke/zen-mode.nvim",
+	"hrsh7th/cmp-nvim-lsp",
+	"hrsh7th/cmp-buffer",
+	"hrsh7th/cmp-path",
+	"hrsh7th/cmp-cmdline",
+	"hrsh7th/nvim-cmp",
+	"L3MON4D3/LuaSnip",
+	"onsails/lspkind.nvim",
+	{
+		"zbirenbaum/copilot-cmp",
+		config = function()
+			require("copilot_cmp").setup()
+		end,
+		dependencies = { "copilot.lua" },
+	},
+	{
+		"pmizio/typescript-tools.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		opts = {},
+	},
+	"saadparwaiz1/cmp_luasnip",
+	"windwp/nvim-autopairs",
+	"windwp/nvim-ts-autotag", -- auto (pairs/tags)
 	"rebelot/kanagawa.nvim", -- Colourscheme
 	"lewis6991/gitsigns.nvim", -- Add git signs (git blame, hunk, etc)
 	"nvim-lua/plenary.nvim", -- organizing my life with neorg
@@ -25,18 +42,18 @@ require("lazy").setup({
 	"m-demare/hlargs.nvim", -- Semantic highlight args (todo: change to use native neovim semantic tokens)
 	"nvim-lualine/lualine.nvim", -- Awesome status line with Lua
 	"nvim-neorg/neorg", -- Organize my life with Neorg
-	-- "folke/neodev.nvim", -- Recommended for DAP
-	-- "mfussenegger/nvim-dap", -- Neovim Debugger Adapter Protocol (DAP)
-	-- "rcarriga/nvim-dap-ui", -- DAP UI
+	"folke/neodev.nvim", -- Recommended for DAP
+	"mfussenegger/nvim-dap", -- Neovim Debugger Adapter Protocol (DAP)
+	"rcarriga/nvim-dap-ui", -- DAP UI
 	"akinsho/toggleterm.nvim",
 	"williamboman/mason.nvim", -- Handle LSP,DAPs automatically
 	"williamboman/mason-lspconfig.nvim", -- Automatic LSP configuration
-	-- "ray-x/go.nvim", -- Go utils
-	-- "nvim-neotest/neotest", -- Neotest
-	-- "antoinemadec/FixCursorHold.nvim", -- optimizes cursor hold event, for neotest
-	-- "nvim-neotest/neotest-go", -- Neotest adapter for go
-	-- "haydenmeade/neotest-jest",
-	-- "olimorris/neotest-rspec",
+	"ray-x/go.nvim", -- Go utils
+	"nvim-neotest/neotest", -- Neotest
+	"antoinemadec/FixCursorHold.nvim", -- optimizes cursor hold event, for neotest
+	"nvim-neotest/neotest-go", -- Neotest adapter for go
+	"haydenmeade/neotest-jest",
+	"olimorris/neotest-rspec",
 	"ray-x/guihua.lua", -- Some GUI enhancements for plugins
 	{ "zbirenbaum/copilot.lua" }, -- Copilot for Neovim
 })
