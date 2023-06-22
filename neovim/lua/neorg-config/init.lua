@@ -3,14 +3,14 @@ local neorg = require("neorg")
 neorg.setup({
 	load = {
 		["core.defaults"] = {},
-		["core.norg.dirman"] = {
+		["core.dirman"] = {
 			config = {
 				workspaces = {
 					work = "~/notes/work",
 				},
 			},
 		},
-		["core.norg.concealer"] = {},
-		["core.norg.journal"] = {},
+		["core.concealer"] = {},
+		["core.journal"] = {},
 	},
 })
