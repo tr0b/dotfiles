@@ -3,11 +3,13 @@ vim.g.maplocalleader = "\\"
 local map = vim.keymap.set -- Alias for setting keymap
 local fzf = require("fzf-lua")
 fzf.setup({
+	"telescope",
 	files = {
 		actions = {
 			["default"] = require("fzf-lua.actions").file_edit,
 		},
 	},
+	winopts = { preview = { default = "bat" } },
 })
 
 local function bind_keys(mappings)
