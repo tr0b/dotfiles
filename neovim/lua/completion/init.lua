@@ -1,4 +1,5 @@
 return function(_, opts)
+	local lspkind = require("lspkind")
 	local has_words_before = function()
 		unpack = unpack or table.unpack
 		local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -6,9 +7,22 @@ return function(_, opts)
 	end
 	-- Set up nvim-cmp.
 	local cmp = require("cmp")
+	-- If you want insert `(` after select function or method item
+	local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+	cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 	local luasnip = require("luasnip")
 
 	cmp.setup({
+		enabled = function()
+			-- disable completion in comments
+			local context = require("cmp.config.context")
+			-- keep command mode completion enabled when cursor is in a comment
+			if vim.api.nvim_get_mode().mode == "c" then
+				return true
+			else
+				return not context.in_treesitter_capture("comment") and not context.in_syntax_group("Comment")
+			end
+		end,
 		snippet = {
 			-- REQUIRED - you must specify a snippet engine
 			expand = function(args)
@@ -62,6 +76,8 @@ return function(_, opts)
 			{ name = "nvim_lsp", group_index = 2 },
 			{ name = "luasnip", group_index = 2 }, -- For luasnip users.
 			{ name = "copilot", group_index = 2 }, -- For snippy users.
+			{ name = "async_path", group_index = 2 },
+			{ name = "nvim_lsp_signature_help", group_index = 2 },
 		}, {
 			{ name = "buffer" },
 		}),
@@ -76,42 +92,52 @@ return function(_, opts)
 		}),
 	})
 
-	-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-	cmp.setup.cmdline({ "/", "?" }, {
-		mapping = cmp.mapping.preset.cmdline(),
-		sources = {
-			{ name = "buffer" },
-		},
-	})
-
-	-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-	cmp.setup.cmdline(":", {
-		mapping = cmp.mapping.preset.cmdline(),
-		sources = cmp.config.sources({
-			{ name = "path" },
-		}, {
-			{ name = "cmdline" },
-		}),
-	})
-
+	--	-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+	--	cmp.setup.cmdline({ "/", "?" }, {
+	--		mapping = cmp.mapping.preset.cmdline(),
+	--		sources = {
+	--			{ name = "buffer" },
+	--		},
+	--	})
+	--
+	--	-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+	--	cmp.setup.cmdline(":", {
+	--		mapping = cmp.mapping.preset.cmdline(),
+	--		sources = cmp.config.sources({
+	--			{ name = "path" },
+	--		}, {
+	--			{ name = "cmdline" },
+	--		}),
+	--		enabled = function()
+	--			-- Set of commands where cmp will be disabled
+	--			local disabled = {
+	--				IncRename = true,
+	--			}
+	--			-- Get first word of cmdline
+	--			local cmd = vim.fn.getcmdline():match("%S+")
+	--			-- Return true if cmd isn't disabled
+	--			-- else call/return cmp.close(), which returns false
+	--			return not disabled[cmd] or cmp.close()
+	--		end,
+	--	})
+	--
 	require("copilot").setup({
 		suggestion = { enabled = false },
 		panel = { enabled = false },
 	})
 
-	local has_words_before = function()
-		if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
-			return false
-		end
-		local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-		return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
-	end
-
-	local lspkind = require("lspkind")
 	cmp.setup({
 		formatting = {
 			format = lspkind.cmp_format({
-				mode = "symbol", -- show only symbol annotations
+				mode = "symbol_text", -- show only symbol annotations
+				menu = {
+					buffer = "[Buffer]",
+					nvim_lsp = "[LSP]",
+					luasnip = "[LuaSnip]",
+					nvim_lua = "[Lua]",
+					latex_symbols = "[Latex]",
+					copilot = "[Copilot]",
+				},
 				maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
 				ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
 			}),
