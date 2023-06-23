@@ -14,7 +14,8 @@ require("lazy").setup({
 	"folke/zen-mode.nvim",
 	"hrsh7th/cmp-nvim-lsp",
 	"hrsh7th/cmp-buffer",
-	"hrsh7th/cmp-path",
+	"FelipeLema/cmp-async-path", -- async instead of sync path seek
+	"hrsh7th/cmp-nvim-lsp-signature-help", -- lsp signature help
 	"hrsh7th/cmp-cmdline",
 	"hrsh7th/nvim-cmp",
 	"L3MON4D3/LuaSnip",
@@ -38,7 +39,6 @@ require("lazy").setup({
 	"lewis6991/gitsigns.nvim", -- Add git signs (git blame, hunk, etc)
 	"nvim-lua/plenary.nvim", -- organizing my life with neorg
 	"Abstract-IDE/penvim", -- organizing my life with neorg
-	"Bekaboo/deadcolumn.nvim", -- Dynamic, color columns
 	"m-demare/hlargs.nvim", -- Semantic highlight args (todo: change to use native neovim semantic tokens)
 	"nvim-lualine/lualine.nvim", -- Awesome status line with Lua
 	"nvim-neorg/neorg", -- Organize my life with Neorg
@@ -56,4 +56,5 @@ require("lazy").setup({
 	"olimorris/neotest-rspec",
 	"ray-x/guihua.lua", -- Some GUI enhancements for plugins
 	{ "zbirenbaum/copilot.lua" }, -- Copilot for Neovim
+	"lukas-reineke/virt-column.nvim", -- Display a virtual char in colorcolumn
 })

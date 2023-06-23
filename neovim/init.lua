@@ -14,7 +14,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require("plugins") -- Plugins
 require("settings") -- General settings
-require("aesthetics") -- Aesthetic configuration
 require("keybindings") -- Keybindings, mapped keys & such
 require("treesitter") -- Treesitter
 require("lsp") -- LSP
@@ -27,3 +26,4 @@ require("gitsigns-config") -- git signs config
 require("neorg-config") -- work in neorg config
 require("penvim-config") -- additional indent configs
 require("debugger") -- Debugger, neotest settings
+require("aesthetics") -- Aesthetic configuration

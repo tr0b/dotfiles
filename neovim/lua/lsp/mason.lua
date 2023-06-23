@@ -1,4 +1,5 @@
-return function(_, opts)
+local M = {}
+function M.setup(_, opts)
 	local diagnostics = require("diagnostics") -- Import diagnostics config
 	local map = vim.keymap.set
 	-- Formatting
@@ -65,11 +66,24 @@ return function(_, opts)
 				filetypes = diagnostics.filetypes,
 			})
 		end,
+
 		["tsserver"] = function()
 			require("typescript-tools").setup({
 				on_attach = on_attach,
 				capabilities = capabilities,
 			})
 		end,
+
+		["gopls"] = function()
+			require("go").setup({
+				lsp_cfg = true,
+				lsp_on_attach = on_attach,
+				-- other setups...
+			})
+			local cfg = require("go.lsp").config() -- config() return the go.nvim gopls setup
+			require("lspconfig").gopls.setup(cfg)
+		end,
 	})
 end
+
+return M
