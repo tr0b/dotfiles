@@ -1,3 +1,9 @@
 [submodule ".config/zsh/fsh"]
 	path = .config/zsh/fsh
 	url = https://github.com/zdharma-continuum/fast-syntax-highlighting
+[submodule ".config/zsh/fzf-tab"]
+	path = .config/zsh/fzf-tab
+	url = https://github.com/Aloxaf/fzf-tab
+[submodule ".config/zsh/zsh-autosuggestions"]
+	path = .config/zsh/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
