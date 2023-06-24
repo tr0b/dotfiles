@@ -18,8 +18,20 @@ local function bind_keys(mappings)
 	end
 end
 
+-- FZF-Lua + Zoxide Custom Integration
+local zoxide = function()
+	local opts = {}
+	opts.prompt = "Directories> "
+	opts.actions = {
+		["default"] = function(selected)
+			vim.cmd("cd " .. selected[1])
+		end,
+	}
+	fzf.fzf_exec("zoxide query -l", opts)
+end
 local fzf_maps = {
 	{ "n", "<c-p>", fzf.files, "Open File" },
+	{ "n", "<leader>z", zoxide, "[Zoxide]: Change Directory" },
 	{ "n", "<c-l>", fzf.live_grep, "Live Grep (rg if possible)" },
 	{ "n", "<c-s>", fzf.oldfiles, "Open Old Files (History)" },
 	{ "n", "<leader>b", fzf.buffers, "Open Buffer" },
@@ -41,7 +53,7 @@ local mappings = {
 	{ "n", "<leader>p", ":Lazy<CR>", "Paq Sync (remove, update, add packages)" },
 	{ "n", "<leader>gg", ":LazyGit<CR>", "Lazy Git" },
 	{ "n", "<leader>m", ":Mason<CR>", "Mason" },
-	{ "n", "<leader>z", ":ZenMode<CR>", "Enable Zen Mode" },
+	{ "n", "<leader>t", require("zen-mode").toggle, "ZenMode" },
 }
 
 local wk = require("which-key")
