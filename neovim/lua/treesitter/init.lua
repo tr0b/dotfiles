@@ -1,10 +1,10 @@
-local ts = require 'nvim-treesitter.configs' -- Import Treesitter
+local ts = require("nvim-treesitter.configs") -- Import Treesitter
 
-ts.setup {
-    autotag = { enable = true, },
-	ensure_installed = 'all',
-    ignore_install = { 'haskell' },
-	highlight = { enable = true, additional_vim_regex_highlighting = false, },
+ts.setup({
+	autotag = { enable = true },
+	ensure_installed = "all",
+	ignore_install = { "haskell" },
+	highlight = { enable = true, additional_vim_regex_highlighting = false },
 	indent = { enable = true },
 	incremental_selection = {
 
@@ -13,16 +13,15 @@ ts.setup {
 			init_selection = "gnn",
 			node_incremental = "grn",
 			scope_incremental = "grc",
-			node_decremental = "grm"
-		}
+			node_decremental = "grm",
+		},
 	},
-}
---
+})
+
 -- Treesitter folding
-vim.api.nvim_exec([[
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
-]], true)
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldenable = false
 
 -- Highlight args with treesitter
-require('hlargs').setup()
+require("hlargs").setup()

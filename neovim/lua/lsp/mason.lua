@@ -1,16 +1,16 @@
 local M = {}
 function M.setup(_, opts)
-	local diagnostics = require("diagnostics") -- Import diagnostics config
+	local util = require("lspconfig/util")
+	require("null-ls").setup(require("diagnostics")) -- Import diagnostics config
 	local map = vim.keymap.set
 	-- Formatting
 	local lsp_formatting = function(bufnr)
 		vim.lsp.buf.format({
 			filter = function(client)
-				-- apply whatever logic you want (in this example, we'll only use efm)
-				return client.name == "efm"
+				-- apply whatever logic you want (in this example, we'll only use null-ls)
+				return client.name == "null-ls"
 			end,
 			bufnr = bufnr,
-			async = true,
 		})
 	end
 
@@ -58,15 +58,6 @@ function M.setup(_, opts)
 		end,
 		-- Next, you can provide a dedicated handler for specific servers.
 		-- For example, a handler override for the `rust_analyzer`:
-		["efm"] = function()
-			require("lspconfig").efm.setup({
-				on_attach = on_attach,
-				init_options = { documentFormatting = true },
-				settings = diagnostics.settings,
-				filetypes = diagnostics.filetypes,
-			})
-		end,
-
 		["tsserver"] = function()
 			require("typescript-tools").setup({
 				on_attach = on_attach,
@@ -75,13 +66,22 @@ function M.setup(_, opts)
 		end,
 
 		["gopls"] = function()
-			require("go").setup({
-				lsp_cfg = true,
-				lsp_on_attach = on_attach,
-				-- other setups...
+			require("lspconfig").gopls.setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+				cmd = { "gopls" },
+				filetypes = { "go", "gomod", "gowork", "gotmpl" },
+				root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+				settings = {
+					gopls = {
+						completeUnimported = true,
+						usePlaceholders = true,
+						analyses = {
+							unusedparams = true,
+						},
+					},
+				},
 			})
-			local cfg = require("go.lsp").config() -- config() return the go.nvim gopls setup
-			require("lspconfig").gopls.setup(cfg)
 		end,
 	})
 end

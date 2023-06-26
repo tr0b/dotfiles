@@ -58,4 +58,5 @@ require("lazy").setup({
 	"ray-x/guihua.lua", -- Some GUI enhancements for plugins
 	{ "zbirenbaum/copilot.lua" }, -- Copilot for Neovim
 	"lukas-reineke/virt-column.nvim", -- Display a virtual char in colorcolumn
+	"jose-elias-alvarez/null-ls.nvim", -- Null-ls for formatting
 })
