@@ -16,11 +16,11 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 # confirmations, etc.) must go above this block; everything else may go below.
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
- --color=fg:#cbccc6,bg:#1f2430,hl:#707a8c
- --color=fg+:#707a8c,bg+:#191e2a,hl+:#ffcc66
- --color=info:#73d0ff,prompt:#707a8c,pointer:#cbccc6
- --color=marker:#73d0ff,spinner:#73d0ff,header:#d4bfff'
+	export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' 
+	--color=fg:#c0caf5,bg:#1a1b26,hl:#bb9af7
+	--color=fg+:#c0caf5,bg+:#1a1b26,hl+:#7dcfff
+	--color=info:#7aa2f7,prompt:#7dcfff,pointer:#7dcfff 
+	--color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a'
 
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 # To apply the command to CTRL-T as well

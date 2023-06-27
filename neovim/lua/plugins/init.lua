@@ -35,7 +35,7 @@ require("lazy").setup({
 	"saadparwaiz1/cmp_luasnip",
 	"windwp/nvim-autopairs",
 	"windwp/nvim-ts-autotag", -- auto (pairs/tags)
-	"rebelot/kanagawa.nvim", -- Colourscheme
+	"folke/tokyonight.nvim", -- Colourscheme
 	"RRethy/nvim-base16", -- Colourscheme
 	"lewis6991/gitsigns.nvim", -- Add git signs (git blame, hunk, etc)
 	"nvim-lua/plenary.nvim", -- organizing my life with neorg

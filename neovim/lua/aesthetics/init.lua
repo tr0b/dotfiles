@@ -1,6 +1,6 @@
 vim.o.termguicolors = true -- termguicolors (256 colour)
 vim.wo.colorcolumn = "79,119,159" -- 80 char limit for columns
-vim.cmd.colorscheme("kanagawa-dragon")
+vim.cmd.colorscheme("tokyonight-storm")
 
 local signs = { Error = "✗", Warn = "", Hint = "", Info = "" }
 for type, icon in pairs(signs) do
