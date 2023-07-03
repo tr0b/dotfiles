@@ -80,6 +80,16 @@ return function(_, opts)
 			{ name = "nvim_lsp_signature_help", group_index = 2 },
 		}, {
 			{ name = "buffer" },
+			{
+				name = "spell",
+				option = {
+					keep_all_entries = false,
+					enable_in_context = function()
+						return true
+					end,
+				},
+				group_index = 2,
+			},
 		}),
 	})
 
@@ -137,6 +147,7 @@ return function(_, opts)
 					nvim_lua = "[Lua]",
 					latex_symbols = "[Latex]",
 					copilot = "[Copilot]",
+					spell = "[Spell]",
 				},
 				maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
 				ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)

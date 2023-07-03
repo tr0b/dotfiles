@@ -17,6 +17,7 @@ require("lazy").setup({
 	"FelipeLema/cmp-async-path", -- async instead of sync path seek
 	"hrsh7th/cmp-nvim-lsp-signature-help", -- lsp signature help
 	"hrsh7th/cmp-cmdline",
+	"f3fora/cmp-spell",
 	"hrsh7th/nvim-cmp",
 	"L3MON4D3/LuaSnip",
 	"onsails/lspkind.nvim",
@@ -59,4 +60,32 @@ require("lazy").setup({
 	{ "zbirenbaum/copilot.lua" }, -- Copilot for Neovim
 	"lukas-reineke/virt-column.nvim", -- Display a virtual char in colorcolumn
 	"jose-elias-alvarez/null-ls.nvim", -- Null-ls for formatting
+	{
+		"ray-x/go.nvim",
+		ft = "go",
+		config = function()
+			require("go").setup({
+				lsp_cfg = true,
+				goimport = "gopls", -- goimport command, can be gopls[default] or goimport
+				lsp_gofumpt = true, -- true: set default gofmt in gopls format to gofumpt
+				lsp_on_attach = require("lsp.on_attach").setup, -- use on_attach from go.nvim
+				lsp_diag_virtual_text = false,
+				luasnip = true,
+				lsp_inlay_hints = {
+					parameter_hints_prefix = "󰊕",
+				},
+			})
+			local cfg = require("go.lsp").config() -- config() return the go.nvim gopls setup
+			require("lspconfig").gopls.setup(cfg)
+			local format_sync_grp = vim.api.nvim_create_augroup("GoImport", {})
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				pattern = "*.go",
+				callback = function()
+					require("go.format").goimport()
+				end,
+				group = format_sync_grp,
+			})
+		end,
+		lazy = true,
+	},
 })

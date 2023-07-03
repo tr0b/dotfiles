@@ -57,6 +57,11 @@ vim.o.completeopt = [[longest,menuone,noinsert,noselect]] -- Complete menu optio
 vim.wo.conceallevel = 3 -- Completely hides concealed text
 vim.bo.expandtab = true -- Use appropiate number of spaces to place <TAB>
 vim.api.nvim_set_var("python3_host_prog", "/usr/bin/python3")
+vim.opt.spell = false
+vim.cmd([[set spelllang+=en_us]])
+vim.cmd([[set spelllang+=es]])
+vim.cmd([[set spelllang+=it]])
+vim.cmd([[set spelllang+=fr]])
 
 vim.api.nvim_exec(neovim_terminal, false) -- Creates augroup through vimscript, sets GIT_EDITOR term
 vim.api.nvim_exec(undodir, false) -- Creates persistent undodir

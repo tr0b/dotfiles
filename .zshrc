@@ -5,6 +5,8 @@ fi
 PATH=$PATH:~/.local/bin
 PATH=$PATH:~/.local/share/bob/nvim-bin
 PATH=$PATH:~/Library/Python/3.9/bin
+PATH=$PATH:/opt/homebrew/opt/openjdk/bin
+PATH=$PATH:~/go/bin
 
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
