@@ -9,6 +9,11 @@ fzf.setup({
 			["default"] = require("fzf-lua.actions").file_edit,
 		},
 	},
+	grep = {
+		actions = {
+			["default"] = require("fzf-lua.actions").file_edit,
+		},
+	},
 	winopts = { preview = { default = "bat" } },
 })
 
