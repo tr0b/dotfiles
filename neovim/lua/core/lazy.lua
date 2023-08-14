@@ -20,6 +20,7 @@ end
 
 -- We have to set the leader key here for lazy.nvim to work
 require("helpers.keys").set_leader(" ")
+require("helpers.keys").set_local_leader("\\")
 
 -- Load plugins from specifications
 -- (The leader key must be set before this)
