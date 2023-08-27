@@ -1,6 +1,18 @@
 -- Autocompletion
 return {
 	{
+		"windwp/nvim-ts-autotag",
+		config = function()
+			require("nvim-ts-autotag").setup()
+		end,
+	},
+	{
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    opts = {} -- this is equalent to setup({}) function
+	},
+	"zbirenbaum/copilot.lua",
+	{
 		"zbirenbaum/copilot-cmp",
 		config = function()
 			require("copilot_cmp").setup()
@@ -20,11 +32,12 @@ return {
 			"saadparwaiz1/cmp_luasnip",
 			"rafamadriz/friendly-snippets",
 			"onsails/lspkind.nvim",
+			"zbirenbaum/copilot-cmp",
 		},
 		config = function()
 			local lspkind = require("lspkind")
-			local cmp = require("cmp")
 			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+			local cmp = require("cmp")
 			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 			local luasnip = require("luasnip")
 

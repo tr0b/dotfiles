@@ -28,4 +28,4 @@ lazy.setup("plugins")
 
 -- Might as well set up an easy-access keybinding
 
-require("helpers.keys").map("n", "<leader>L", lazy.show, "Show Lazy")
+require("helpers.keys").map("n", "<leader>p", lazy.show, "Show Package Manager")

@@ -18,7 +18,6 @@ return {
 					"lua",
 					"python",
 					"rust",
-					"help",
 					"vim",
 					"elixir",
 					"php",

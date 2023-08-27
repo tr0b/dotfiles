@@ -32,11 +32,11 @@ return {
 
 		local colorscheme = require("helpers.colorscheme")
 		local lualine_theme = colorscheme == "default" and "auto" or colorscheme
-		require("lualine").setup({
+		local config = {
 			options = {
 				icons_enabled = true,
 				theme = lualine_theme,
-				component_separators = "|",
+				component_separators = "┃",
 				section_separators = "",
 				theme = {
 					-- We are going to use lualine_c an lualine_x as left and
@@ -65,7 +65,7 @@ return {
 				lualine_c = {},
 				lualine_x = {},
 			},
-		})
+		}
 		-- Inserts a component in lualine_c at left section
 		local function ins_left(component)
 			table.insert(config.sections.lualine_c, component)
@@ -214,5 +214,8 @@ return {
 			color = { fg = colors.blue },
 			padding = { left = 1 },
 		})
+
+		-- Now don't forget to initialize lualine
+		require("lualine").setup(config)
 	end,
 }
