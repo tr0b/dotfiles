@@ -40,10 +40,3 @@ end, "Toggle between light and dark themes")
 
 -- Clear after search
 map("n", "<leader>ur", "<cmd>nohl<cr>", "Clear highlights")
-
--- Toggleterm mappings 
-map("t", "<esc>", [[<C-\><C-n>]])
-map("t", "<C-h>", [[<Cmd>wincmd h<CR>]])
-map("t", "<C-j>", [[<Cmd>wincmd j<CR>]])
-map("t", "<C-k>", [[<Cmd>wincmd k<CR>]])
-map("t", "<C-l>", [[<Cmd>wincmd l<CR>]])

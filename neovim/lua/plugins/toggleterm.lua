@@ -8,7 +8,14 @@ return {
 			close_on_exit = true,
 		})
 		local map = require("helpers.keys").map
-		map("n", "<leader>t", '<cmd>exe v:count1 . "ToggleTerm direction=float"<CR>', "Open Terminal")
-		map("i", "<c-t>", '<Esc><cmd>exe v:count1 . "ToggleTerm direction=float"<CR>', "Open Terminal")
+		-- Toggle term keymaps
+		function _G.set_terminal_keymaps()
+			local opts = { buffer = 0 }
+			map("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
+			map("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
+			map("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
+			map("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
+		end
+		vim.cmd("autocmd! TermOpen term://*toggleterm#* lua set_terminal_keymaps()")
 	end,
 }
