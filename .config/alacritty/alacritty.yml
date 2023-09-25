@@ -1,3 +1,5 @@
+window:
+  option_as_alt: Both
 # Font configuration
 font:
   # Normal (roman) font face
@@ -105,6 +107,7 @@ key_bindings:
   - { key: H,        mods: Alt,     chars: "\x1bh"                       }
   - { key: L,        mods: Alt,     chars: "\x1bl"                       }
   - { key: C,        mods: Alt,     chars: "\x1bc"                       }
+  - { key: G,        mods: Alt,     chars: "\x1bg"                       }
 
 # TokyoNight Alacritty Colors
 colors:
