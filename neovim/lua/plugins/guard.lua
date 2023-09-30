@@ -12,12 +12,8 @@ return {
             local phpcbf = { cmd = "phpcbf", stdin = true }
             local phpcs = { cmd = "phpcs", stdin = true }
             local gofumpt = { cmd = "gofumpt", stdin = true }
-            local goimports = {
-                cmd = "goimports-reviser",
-                args = { "-file-path" },
-                fname = true,
-            }
-            local golines = { cmd = "golines", stdin = true }
+            local golines = { cmd = "golines", args = { "--" }, stdin = true }
+            local goimports = { cmd = "goimports", stdin = true }
             local sqlfluff = { cmd = "sqlfluff", stdin = true }
             local sqlfmt = { cmd = "sqlfmt", stdin = true }
             local stylua = {
@@ -35,7 +31,7 @@ return {
                 :fmt(prettier)
                 :lint("eslint_d")
             ft("php"):fmt(phpcbf):lint(phpcs)
-            ft("go"):fmt(goimports):append(golines):append(gofumpt)
+            ft("go"):fmt(gofumpt):append(golines):append(goimports)
             ft("python"):fmt("black"):lint(mypy)
             ft("bash,zsh,sh,ksh"):lint("shellcheck")
             ft("sql"):lint(sqlfluff):fmt(sqlfmt)
