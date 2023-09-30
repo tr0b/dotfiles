@@ -51,6 +51,11 @@ end
 -- LSP Configuration & Plugins
 return {
     {
+        "pmizio/typescript-tools.nvim",
+        dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+        opts = {},
+    },
+    {
         "whynothugo/lsp_lines.nvim",
         url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     },
