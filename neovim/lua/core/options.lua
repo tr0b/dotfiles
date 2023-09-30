@@ -60,9 +60,10 @@ end
 -- Set other options
 local colorscheme = require("helpers.colorscheme")
 vim.cmd.colorscheme(colorscheme)
+vim.wo.colorcolumn = "79,119,159"
 
 vim.api.nvim_exec(neovim_terminal, false) -- Creates augroup through vimscript, sets GIT_EDITOR term
-vim.api.nvim_exec(undodir, false) -- Creates persistent undodir
+vim.api.nvim_exec(undodir, false)         -- Creates persistent undodir
 vim.api.nvim_set_hl(1, "Comment", { italic = true })
 vim.cmd([[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]])
 vim.cmd([[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]])
