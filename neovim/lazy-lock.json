@@ -41,6 +41,7 @@
   "nvim-ts-autotag": { "branch": "main", "commit": "6be1192965df35f94b8ea6d323354f7dc7a557e4" },
   "nvim-web-devicons": { "branch": "master", "commit": "45d0237c427baba8cd05e0ab26d30e2ee58c2c82" },
   "plenary.nvim": { "branch": "master", "commit": "9ce85b0f7dcfe5358c0be937ad23e456907d410b" },
+  "rainbow-delimiters.nvim": { "branch": "master", "commit": "ece052dbcb2b3d2980f0f9881e41277929813644" },
   "tokyonight.nvim": { "branch": "main", "commit": "e89caa3ad6d8da9d0dd981ec74a82c55adc61ffd" },
   "typescript-tools.nvim": { "branch": "master", "commit": "f7c45763fe1513e257ebf45bedfc5e6dd1aade78" },
   "vim-illuminate": { "branch": "master", "commit": "1b5d70332a51a1de05f281069851865a2bb1e6d7" },
