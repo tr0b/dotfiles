@@ -7,7 +7,8 @@ return {
         },
         config = function()
             local ft = require("guard.filetype")
-            local prettier = { cmd = "prettierd", fname = true }
+            local prettier =
+                { cmd = "prettier", fname = true, ignore_error = true }
             local mypy = { cmd = "mypy", stdin = true }
             local phpcbf = { cmd = "phpcbf", stdin = true }
             local phpcs = { cmd = "phpcs", stdin = true }
