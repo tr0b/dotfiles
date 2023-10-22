@@ -20,7 +20,7 @@ return {
                     glob_flag = "--iglob",
                     glob_separator = "%s%-%-",
                 },
-                winopts = { preview = { default = "bat" } },
+                winopts = { preview = { hidden = "hidden" } },
             })
 
             -- FZF-Lua + Zoxide Custom Integration
