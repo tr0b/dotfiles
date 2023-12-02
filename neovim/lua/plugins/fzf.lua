@@ -40,7 +40,7 @@ return {
             map("n", "<M-g>", zoxide, "[Zoxide]: Change Directory")
             map(
                 "n",
-                "<c-i>",
+                "<M-e>",
                 require("fzf-lua").live_grep,
                 "Live Grep (rg if possible)"
             )
@@ -50,7 +50,7 @@ return {
                 require("fzf-lua").oldfiles,
                 "Open Old Files (History)"
             )
-            map("n", "<leader>b", require("fzf-lua").buffers, "Open Buffer")
+            map("n", "<M-b>", require("fzf-lua").buffers, "Open Buffer")
             map(
                 "n",
                 "<leader>gf",

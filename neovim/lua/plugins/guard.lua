@@ -8,7 +8,7 @@ return {
         config = function()
             local ft = require("guard.filetype")
             local prettier =
-                { cmd = "prettier", fname = true, ignore_error = true }
+                { cmd = "prettierd", fname = true, ignore_error = true }
             local mypy = { cmd = "mypy", stdin = true }
             local phpcbf = { cmd = "phpcbf", stdin = true }
             local phpcs = { cmd = "phpcs", stdin = true }
@@ -31,6 +31,7 @@ return {
             ft("typescript,javascript,typescriptreact,html")
                 :fmt(prettier)
                 :lint("eslint_d")
+            ft("svelte"):fmt("lsp"):lint("lsp"):append("eslint_d")
             ft("php"):fmt(phpcbf):lint(phpcs)
             ft("go"):fmt(gofumpt):append(golines):append(goimports)
             ft("python"):fmt("black"):lint(mypy)
@@ -40,10 +41,12 @@ return {
             -- Call setup() LAST!
             require("guard").setup({
                 -- the only options for the setup function
-                fmt_on_save = true,
+                fmt_on_save = false,
                 -- Use lsp if no formatter was defined for this filetype
                 lsp_as_default_formatter = false,
             })
+            local map = require("helpers.keys").map
+            map("n", "<M-f>", "<cmd> GuardFmt<CR>", "Apply Formatting")
         end,
     },
 }

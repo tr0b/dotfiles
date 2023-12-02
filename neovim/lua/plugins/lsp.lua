@@ -87,6 +87,7 @@ return {
                     "cssls",
                     "bashls",
                     "dockerls",
+                    "svelte",
                 },
                 automatic_installation = true,
             })
