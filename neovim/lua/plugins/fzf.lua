@@ -50,7 +50,7 @@ return {
                 require("fzf-lua").oldfiles,
                 "Open Old Files (History)"
             )
-            map("n", "<M-b>", require("fzf-lua").buffers, "Open Buffer")
+            map("n", "<leader>b", require("fzf-lua").buffers, "Open Buffer")
             map(
                 "n",
                 "<leader>gf",
