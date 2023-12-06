@@ -40,7 +40,7 @@ return {
             map("n", "<M-g>", zoxide, "[Zoxide]: Change Directory")
             map(
                 "n",
-                "<M-e>",
+                "<M-i>",
                 require("fzf-lua").live_grep,
                 "Live Grep (rg if possible)"
             )
