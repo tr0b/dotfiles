@@ -46,7 +46,7 @@ local on_attach = function(client, bufnr)
 	lsp_map("gd", "<cmd>FzfLua lsp_definitions<CR>", bufnr, "Goto Definition")
 	lsp_map("gI", "<cmd>FzfLua lsp_implementations<CR>", bufnr, "Goto Implementation")
 	lsp_map("K", "<cmd>Lspsaga hover_doc<CR>", bufnr, "Hover Documentation")
-	lsp_map("gD", "<cmd>FzfLua lsp_declarations", bufnr, "Goto Declaration")
+	lsp_map("gD", "<cmd>FzfLua lsp_declarations<CR>", bufnr, "Goto Declaration")
 
 	-- Attach and configure vim-illuminate
 	require("illuminate").on_attach(client)
