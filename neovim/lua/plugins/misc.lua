@@ -12,13 +12,7 @@ return {
 			require("mini.move").setup()
 		end,
 	},
-	-- Better buffer closing actions. Available via the buffers helper.
-	{
-		"kazhala/close-buffers.nvim",
-		opts = {
-			preserve_window_layout = { "this", "nameless" },
-		},
-	},
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
 	"tpope/vim-surround", -- Surround stuff with the ys-, cs-, ds- commands
+	"tpope/vim-abolish", -- Vim abolish. Contains Subvert and is very helpful
 }
