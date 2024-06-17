@@ -31,30 +31,29 @@ set undofile
 ]]
 
 local opts = {
-    shiftwidth = 4,
-    tabstop = 4,
-    expandtab = true,
-    wrap = false,
-    termguicolors = true,
-    list = true,
-    number = true,
-    relativenumber = true,
-    timeout = true,
-    cursorline = true,
-    timeoutlen = 300,
-    ignorecase = true,
-    smartcase = true,
-    undofile = true,
-    lazyredraw = true,
-    ruler = true,
-    completeopt = [[longest,menuone,noinsert,noselect]],
-    conceallevel = 3,
-    inccommand = "nosplit",
+	shiftwidth = 4,
+	tabstop = 4,
+	expandtab = true,
+	wrap = false,
+	list = true,
+	number = true,
+	relativenumber = true,
+	timeout = true,
+	cursorline = true,
+	timeoutlen = 300,
+	ignorecase = true,
+	smartcase = true,
+	undofile = true,
+	lazyredraw = true,
+	ruler = true,
+	completeopt = [[longest,menuone,noinsert,noselect]],
+	conceallevel = 3,
+	inccommand = "nosplit",
 }
 
 -- Set options from table
 for opt, val in pairs(opts) do
-    vim.o[opt] = val
+	vim.o[opt] = val
 end
 
 -- Set other options
@@ -71,3 +70,4 @@ vim.cmd([[highlight 160CharColumn guifg=#E06C75 gui=nocombine]])
 vim.cmd([[highlight 120CharColumn guifg=#E5C07B gui=nocombine]])
 vim.cmd([[highlight 80CharColumn guifg=#98C379 gui=nocombine]])
 vim.cmd([[highlight Normal guibg=NONE]])
+vim.cmd([[highlight Comment gui=bold,italic]])
