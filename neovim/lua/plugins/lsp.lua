@@ -203,11 +203,13 @@ return {
 		config = function()
 			require("go").setup({
 				lsp_cfg = true,
-				goimport = "gopls", -- goimport command, can be gopls[default] or goimport
+				goimports = "gopls", -- goimport command, can be gopls[default] or goimport
 				lsp_gofumpt = true, -- true: set default gofmt in gopls format to gofumpt
 				lsp_document_formatting = false,
 				lsp_on_attach = on_attach, -- use on_attach from go.nvim
-				lsp_diag_virtual_text = false,
+				diagnostic = {
+					virtual_text = false,
+				},
 				luasnip = true,
 				lsp_inlay_hints = {
 					parameter_hints_prefix = "󰊕",
