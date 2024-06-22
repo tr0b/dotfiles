@@ -39,8 +39,8 @@ local on_attach = function(client, bufnr)
 			},
 		})
 	end, bufnr, "Code action")
-	lsp_map("<leader>ld", "<cmd> FzfLua lsp_typedefs<CR>", bufnr, "Type definition")
-	lsp_map("<leader>lo", "<cmd>Lspsaga outline<CR>", bufnr, "Outline")
+	lsp_map("<leader>d", "<cmd> FzfLua lsp_typedefs<CR>", bufnr, "Type definition")
+	lsp_map("<leader>o", "<cmd>Lspsaga outline<CR>", bufnr, "Outline")
 
 	lsp_map("gr", "<cmd>FzfLua lsp_references<CR>", bufnr, "Goto Reference")
 	lsp_map("gd", "<cmd>FzfLua lsp_definitions<CR>", bufnr, "Goto Definition")
@@ -54,11 +54,6 @@ end
 
 -- LSP Configuration & Plugins
 return {
-	{
-		"pmizio/typescript-tools.nvim",
-		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-		opts = {},
-	},
 	{
 		"whynothugo/lsp_lines.nvim",
 		url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
@@ -83,7 +78,6 @@ return {
 					"gopls",
 					"html",
 					"intelephense",
-					"ember",
 					"ltex",
 					"yamlls",
 					"clangd",
@@ -92,6 +86,7 @@ return {
 					"bashls",
 					"dockerls",
 					"svelte",
+					"tsserver",
 				},
 				automatic_installation = true,
 			})
@@ -100,7 +95,7 @@ return {
 			require("helpers.keys").map("n", "<leader>m", "<cmd>Mason<cr>", "Show Mason")
 
 			-- Neodev setup before LSP config
-			require("neodev").setup()
+			require("neodev").setup({ library = { plugins = { "nvim-dap-ui" }, types = true } })
 
 			vim.diagnostic.config(diagnostic_config)
 
@@ -117,14 +112,6 @@ return {
 						capabilities = capabilities,
 					})
 				end,
-				-- Next, you can provide a dedicated handler for specific servers.
-				-- For example, a handler override for the `rust_analyzer`:
-				["tsserver"] = function()
-					require("typescript-tools").setup({
-						on_attach = on_attach,
-						capabilities = capabilities,
-					})
-				end,
 				["html"] = function()
 					--Enable (broadcasting) snippet capability for completion
 					local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -134,7 +121,6 @@ return {
 						capabilities = capabilities,
 					})
 				end,
-
 				["gopls"] = function() end,
 				["lua_ls"] = function()
 					require("lspconfig")["lua_ls"].setup({
