@@ -8,14 +8,39 @@ return {
 			"nvim-tree/nvim-web-devicons",
 			"MunifTanjim/nui.nvim",
 		},
+		opts = {
+			icon = {
+				folder_closed = "",
+				folder_open = "",
+				folder_empty = "󰜌",
+			},
+			modified = {
+				symbol = "[+]",
+				highlight = "NeoTreeModified",
+			},
+			name = {
+				trailing_slash = true,
+				use_git_status_colors = true,
+				highlight = "NeoTreeFileName",
+			},
+			git_status = {
+				symbols = {
+					-- Change type
+					added = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
+					modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
+					deleted = "✖", -- this can only be used in the git_status source
+					renamed = "󰁕", -- this can only be used in the git_status source
+					-- Status type
+					untracked = "",
+					ignored = "",
+					unstaged = "󰄱",
+					staged = "",
+					conflict = "",
+				},
+			},
+		},
 		config = function()
-			require("neo-tree").setup()
-			require("helpers.keys").map(
-				{ "n", "v" },
-				"<leader>e",
-				"<cmd>NeoTreeRevealToggle<cr>",
-				"Toggle file explorer"
-			)
+			require("helpers.keys").map({ "n", "v" }, "<leader>e", "<cmd>Neotree toggle<cr>", "Toggle file explorer")
 		end,
 	},
 }
