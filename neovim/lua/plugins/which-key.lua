@@ -6,6 +6,7 @@ return {
 			wk.register({
 				["<leader>"] = {
 					u = { name = "UI" },
+					t = { name = "Trouble" },
 					d = { name = "Debugging" },
 					g = { name = "Git" },
 				},

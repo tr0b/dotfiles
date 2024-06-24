@@ -48,6 +48,10 @@ local on_attach = function(client, bufnr)
 	lsp_map("K", "<cmd>Lspsaga hover_doc<CR>", bufnr, "Hover Documentation")
 	lsp_map("gD", "<cmd>FzfLua lsp_declarations<CR>", bufnr, "Goto Declaration")
 
+	if client.server_capabilities.inlayHintProvider then
+		vim.lsp.inlay_hint.enable(true, { bufnr = 0 })
+	end
+
 	-- Attach and configure vim-illuminate
 	require("illuminate").on_attach(client)
 end
@@ -55,15 +59,10 @@ end
 -- LSP Configuration & Plugins
 return {
 	{
-		"whynothugo/lsp_lines.nvim",
-		url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-	},
-	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
-			"j-hui/fidget.nvim",
 			"folke/neodev.nvim",
 			"RRethy/vim-illuminate",
 			"hrsh7th/cmp-nvim-lsp",
@@ -102,6 +101,7 @@ return {
 			-- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 			capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+			capabilities.textDocument.completion.completionItem.snippetSupport = true
 			require("mason-lspconfig").setup_handlers({
 				-- The first entry (without a key) will be the default handler
 				-- and will be called for each installed server that doesn't have
@@ -110,18 +110,20 @@ return {
 					require("lspconfig")[server_name].setup({
 						on_attach = on_attach,
 						capabilities = capabilities,
+						init_options = {
+							preferences = {
+								includeInlayParameterNameHints = "all",
+								includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+								includeInlayFunctionParameterTypeHints = true,
+								includeInlayVariableTypeHints = true,
+								includeInlayPropertyDeclarationTypeHints = true,
+								includeInlayFunctionLikeReturnTypeHints = true,
+								includeInlayEnumMemberValueHints = true,
+								importModuleSpecifierPreference = "non-relative",
+							},
+						},
 					})
 				end,
-				["html"] = function()
-					--Enable (broadcasting) snippet capability for completion
-					local capabilities = vim.lsp.protocol.make_client_capabilities()
-					capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-					require("lspconfig").html.setup({
-						capabilities = capabilities,
-					})
-				end,
-				["gopls"] = function() end,
 				["lua_ls"] = function()
 					require("lspconfig")["lua_ls"].setup({
 						on_attach = on_attach,
@@ -145,6 +147,9 @@ return {
 										indent_style = "space",
 										indent_size = "2",
 									},
+								},
+								hint = {
+									enable = true,
 								},
 							},
 						},
@@ -193,9 +198,6 @@ return {
 				lsp_gofumpt = true, -- true: set default gofmt in gopls format to gofumpt
 				lsp_document_formatting = false,
 				lsp_on_attach = on_attach, -- use on_attach from go.nvim
-				diagnostic = {
-					virtual_text = false,
-				},
 				luasnip = true,
 				lsp_inlay_hints = {
 					parameter_hints_prefix = "󰊕",
